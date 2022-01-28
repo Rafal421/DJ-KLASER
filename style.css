@@ -164,11 +164,10 @@ video{
 
 .text p
 {
-  font-size: 1.1em;
+  font-size: 1.5em;
   color: #fff;
-  margin: 20px 0;
   font-weight: 400;
-  max-width: 700px;
+  max-width: 760px;
 }
 
 .text a
@@ -257,6 +256,7 @@ video{
 
 .all{
   height: 100%;
+  background-color: black;
 }
 
 .main{
@@ -284,6 +284,8 @@ video{
 
 .box p{
   font-size: 20px;
+  width: 70%;
+  margin: auto;
 }
 
 .box:hover{
@@ -409,9 +411,6 @@ footer p{
     font-size: 35px;
   }
 
-  .box{
-    transition: none;
-  }
 }
 
 
@@ -433,6 +432,19 @@ footer p{
 
   .kontakt{
     font-size: 25PX;
+  }
+
+  .box{
+    transition: none;
+    width: 100%;
+  }
+
+  .box:hover{
+    width: 100%;
+  }
+
+  .text p {
+    font-size: 1.2em;
   }
 }
 
@@ -492,6 +504,6 @@ footer p{
 }
 
   .text h3{
-  font-size: 27px;
+  font-size: 20px;
 }
 }
