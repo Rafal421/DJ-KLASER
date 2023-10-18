@@ -1,125 +1,157 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.jsdelivr.net/npm/baffle@0.3.6/dist/baffle.min.js"></script>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="style.css" />
     <title>DJKLASER</title>
-</head>
-<body>
+  </head>
+  <body>
     <div class="loading">
       <div class="Name">DJ KLASER</div>
     </div>
-    <div class="all">
+    
+    <nav class="sideNav d-flex flex-column">
+      <!-- Navegation icons -->
+      <a class="sideNav__button" href="#1"><i class="fa fa-home"></i></a>
+
+      <a class="sideNav__button" href="#2"><i class="fas fa-birthday-cake"></i></a>
+
+      <a class="sideNav__button" href="#3"><i class="fa fa-user"></i></a>
+
+      <a class="sideNav__button" href="#4"><i class="fa fa-image"></i></a>
+
+      <a class="sideNav__button" href="#5"><i class="fa fa-phone"></i></a>
+  </nav>
+
+    <div class="all" id="1">
       <section class="showcase">
-          <header>
-            <h2 class="logo">DJ KLASER</h2>
-            <div class="toggle"></div>
-          </header>
-          <video src="Untitled.mov" playsinline muted loop autoplay></video>
-          <div class="overlay"></div>
-          <div class="text">
-            <h2>DJ KLASER</h2> 
-            <h3>TEN WIECZOR JEST NASZ</h3>
-            <p>Profesjonalne prowadzenie imprez okolicznściowych, oprawa muzyczna</p>
-            <a href="#3">Kontakt</a>
-          </div>
-        </section>
-
-        <div class="menu">
-          <ul>
-            <li><a href="#1">O Mnie</a></li>
-            <li><a href="#2">Galeria</a></li>
-            <li><a href="#3">Kontakt</a></li>
-          </ul>
+        <header>
+          <h2 class="logo" id="glitchH2">DJ KLASER</h2>
+          <div class="toggle"></div>
+        </header>
+        <video src="gifs/Untitled.mov" playsinline muted loop autoplay></video>
+        <div class="overlay"></div>
+        <div class="text">
+          <h2 id="glitchH2">DJ KLASER</h2>
+          <h3 id="glitchH3">TEN WIECZOR JEST NASZ</h3>
+          <p id="glitchP">
+            Profesjonalne prowadzenie imprez okolicznściowych, oprawa muzyczna
+          </p>
+          <a href="#3" id="glitchLink">Kontakt</a>
         </div>
+      </section>
+    </div>
+
+    <div class="line"></div> <!-- SPRZĘT/IMPREZY/ZABAWY -->
+
+    <div class="main" id="2">
+      <div class="box photo1">
+        <img src="icons/dj-mixer.png" alt="dj-mixer" />
+        <h2>Sprzęt</h2>
+        <p>Profesjonalny sprzęt DENON-DJ</p>
+        <p>Nagłośnienie Turbosound IP3000</p>
+        <p>Oświetlenie Ligh4ME</p>
       </div>
 
-      <div class="line"></div>
+      <div class="box photo2">
+        <img src="icons/disco-ball.png" alt="disco-ball" />
+        <h2>Impreza</h2>
+        <p>
+          Dla Ciebie przygotuje plan imprezy, zgodnie z Twoimi perferencjami
+          muzycznymi, by impreza pozostała w pamięci na wieki.
+        </p>
+      </div>
+
+      <div class="box photo3">
+        <img src="icons/wedding.png" alt="wedding-rings" />
+        <h2>Wesela</h2>
+        <p>
+          To magiczne wydarzenie wymaga szczególnej uwagi, dlatego poprawidzimy
+          go dla Was w duecie. DJ KLASER & DJ SZPILKA.
+        </p>
+      </div>
+    </div>
+
+    <div class="line"></div> <!-- ABOUT ME -->
+
+    <div class="about-content" id="3"> 
+      <div>
+        <div class="shadow">
+          <div class="about-img">
+            <img src="photos/ME2.jpg" alt="about image" />
+          </div>
+        </div>
+
+        <h2>DJ Klaser<br />& <br/ > DJ Szpilka </h2>
+        <h3>Profesional DJs</h3>
+      </div>
+
+      <ul class="icons">
+        <li><a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+        <li><a href="https://twitter.com/?lang=pl" target="_blank"><i class="fab fa-twitter"></i></a></li>
+        <li><a href="https://pl.linkedin.com/" target="_blank"> <i class="fab fa-linkedin"></i></a></li>
+        <li><a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a></li>
+      </ul>
+    </div>
+  </div>
+
+    <div class="line" id="4">Galeria</div> <!-- GALERIA -->
+
+    <div class="galeria">
+      <video src="gifs/Video1.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video2.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video3.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video4.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video5.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video6.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video7.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video8.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video9.mov" playsinline muted loop autoplay></video>
+      <video src="gifs/Video10.mov" playsinline muted loop autoplay></video>
+    </div>
+
+    <div class="line"></div> <!-- KONTAKT -->
+
+    <div class="kontakt" id="5">
+      <h2>Jeśli jesteś zainteresowany</h2>
+      <p>Umów się na spotkanie</p>
+      <div class="contact-form">
+        <h2>Contact Us</h2>
+        <form action="#" method="post">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" name="name" required>
+          </div>
       
-      <div class="main" >
-        <div class="box photo1">
-          <img src="dj-mixer.png" alt="dj-mixer">
-          <h2>Sprzęt</h2>
-          <p>Profesjonalny sprzęt DENON-DJ</p>
-          <p>Nagłośnienie Turbosound IP3000</p>
-          <p>Oświetlenie Ligh4ME</p>
-        </div>
-
-        <div class="box photo2">
-          <img src="disco-ball.png" alt="disco-ball">
-          <h2>Impreza</h2>
-          <p>Dla Ciebie przygotuje plan imprezy, zgodnie z Twoimi perferencjami muzycznymi, by impreza pozostała w pamięci na wieki.</p>
-        </div>
-        
-        <div class="box photo3">
-          <img src="wedding.png" alt="wedding-rings">
-          <h2>Wesela</h2>
-          <p>To magiczne wydarzenie wymaga szczególnej uwagi, dlatego poprawidzimy go dla Was w duecie. DJ KLASER & DJ SZPILKA.</p>
-        </div>
-      </div>
-
-      <div class="line" id="1" ></div>
-
-      <div class="me">
-        <div class="photo">
-          <img src="ME.jpg" alt="Me" class="photo_none">
-          <img src="ME2.jpg" alt="Me">
-          <img src="ME3.jpg" alt="Me">
-          <img src="ME4.jpg" alt="Me">
-        </div>
-          <div class="opis">
-            <h1>O MNIE</h1>
-            <p>Dobra zabawa to całe moje życie </p>
-            <br>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Rerum id fuga debitis, iusto pariatur, unde sequi nulla consequuntur velit esse, aperiam odio delectus voluptas ullam quae veritatis accusantium soluta perspiciatis?</p>
+          <div class="form-group">
+            <label for="email">Your Email</label>
+            <input type="email" id="email" name="email" required>
           </div>
+      
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+          </div>
+      
+          <div class="form-group">
+            <button type="submit">Submit</button>
+          </div>
+        </form>
       </div>
+    
+    </div>
+    
 
-      <div class="line" id="2">Galeria</div>
-
-      <div class="galeria">
-        <video src="Video1.mov" playsinline muted loop autoplay></video>
-        <video src="Video2.mov" playsinline muted loop autoplay></video>
-        <video src="Video3.mov" playsinline muted loop autoplay></video>
-        <video src="Video4.mov" playsinline muted loop autoplay></video>
-        <video src="Video5.mov" playsinline muted loop autoplay></video>
-        <video src="Video6.mov" playsinline muted loop autoplay></video>
-        <img src="photo1.jpg" alt="photo">
-        <img src="photo2.jpg" alt="photo">
-        <img src="photo3.jpg" alt="photo">
-        <img src="photo4.jpg" alt="photo">
-        <img src="photo5.jpg" alt="photo">
-        <img src="photo6.jpg" alt="photo">
-        <img src="photo7.jpg" alt="photo">
-        <img src="photo8.jpg" alt="photo">
-        <img src="photo9.jpg" alt="photo">
-        <img src="photo10.JPG" alt="photo">
-        <img src="photo11.jpg" alt="photo">
-        <img src="photo12.jpg" alt="photo">
-        <video src="Video7.mov" playsinline muted loop autoplay></video>
-        <video src="Video8.mov" playsinline muted loop autoplay></video>
-        <video src="Video9.mov" playsinline muted loop autoplay></video>
-        <video src="Video10.mov"playsinline muted loop autoplay></video>
-      </div>
-
-      <div class="line"></div>
-
-      <div class="kontakt" id="3">
-        <h2>Jeśli jesteś zainteresowany</h2>
-        <p>Umów się na spotkanie</p>
-        <p>515 255 477</p>
-        <p>hak73@op.p</p>
-      </div>
-
-      <div class="line"><p>Autor© 2022</p></div>
-      <footer>
-        <p> hak73@op.pl</p>
-        <p>515 255 477</p>
-        <p>Krzysztof Haczek</p>
-      </footer>
-      <script src="JavaScript.js"></script>
-</body>
+    <div class="line"><p>Autor© 2022</p></div>
+    <footer>
+      <p>hak73@op.pll</p>
+      <p>515 255 477</p>
+      <p>Krzysztof Haczek</p>
+    </footer>
+    <script src="JavaScript.js"></script>
+  </body>
 </html>

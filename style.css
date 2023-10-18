@@ -1,41 +1,51 @@
-html{
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap");
+
+html {
   scroll-behavior: smooth;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
-.loading{
+/* Loading screan ----------------------------------------------- */
+
+.loading {
   position: fixed;
   width: 100%;
   height: 100vh;
   background-color: black;
   text-align: center;
   line-height: 90vh;
-  font-family: 'Montserrat Subrayada', sans-serif;
+  font-family: "Montserrat Subrayada", sans-serif;
   font-size: 5em;
   z-index: 10000;
   animation: fade-in 4s;
   text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
 }
 
-.loading.display-none{
+.loading.display-none {
   top: 0;
   left: 0;
   display: none;
   transform: translate(-50%, -50%);
 }
 
-@keyframes fade-in{
-  to{
-      opacity: 0;
-
+@keyframes fade-in {
+  to {
+    opacity: 0;
   }
 }
 
-.Name{
+.Name {
   font-family: poppins;
   color: #fff;
   font-size: 35px;
-  font-family: 'Montserrat Subrayada', sans-serif;
+  font-family: "Montserrat Subrayada", sans-serif;
   font-weight: 600;
   position: absolute;
   top: 50%;
@@ -43,18 +53,37 @@ html{
   transform: translate(-50%, -50%);
 }
 
+/* Loading screan ----------------------------------------------- */
 
-@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
-*
-{
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+/* SideNav ----------------------------------------------- */
+
+.sideNav {
+  height: 15%;
+  width: fit-content;
+  position: fixed;
+  z-index: 1000 !important;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
-header
-{
+.sideNav__button {
+  text-decoration: none;
+  color: white;
+}
+
+.sideNav__button i {
+  margin: 0 10px 10px 0;
+}
+
+/* SideNav ----------------------------------------------- */
+
+/* Header ----------------------------------------------- */
+
+header {
   position: absolute;
   top: 0;
   left: 0;
@@ -66,39 +95,16 @@ header
   align-items: center;
 }
 
-header .logo
-{
+header .logo {
   color: #fff;
   text-transform: uppercase;
   cursor: pointer;
-  font-family: 'Montserrat Subrayada', sans-serif;
+  font-family: "Montserrat Subrayada", sans-serif;
   font-size: 30px;
   text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
 }
 
-.toggle
-{
-  position: relative;
-  width: 60px;
-  height: 60px;
-  background: url(menu.png);
-  background-repeat: no-repeat;
-  background-size: 30px;
-  background-position: center;
-  cursor: pointer;
-}
-
-.toggle.active
-{
-  background: url(close.png);
-  background-repeat: no-repeat;
-  background-size: 27px;
-  background-position: center;
-  cursor: pointer;
-}
-
-.showcase
-{
+.showcase {
   position: relative;
   right: 0;
   width: 100%;
@@ -112,17 +118,15 @@ header .logo
   z-index: 2;
 }
 
-.showcase.active
-{
+.showcase.active {
   right: 300px;
 }
 
-video{
+video {
   position: relative;
 }
 
-.showcase video
-{
+.showcase video {
   position: absolute;
   top: 0;
   left: 0;
@@ -132,8 +136,7 @@ video{
   opacity: 0.8;
 }
 
-.overlay
-{
+.overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -141,50 +144,45 @@ video{
   height: 100%;
 }
 
-.text
-{
+.text {
   position: relative;
   z-index: 10;
 }
 
-.text h2
-{
+.text h2 {
   font-size: 5em;
   font-weight: 800;
   color: #fff;
   line-height: 1em;
   text-transform: uppercase;
-  text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
+  text-shadow: 4px 3px rgba(0, 140, 255, 0.575);
 }
 
-.text h3
-{
+.text h3 {
   font-size: 4em;
   font-weight: 700;
   color: #fff;
   line-height: 1em;
   text-transform: uppercase;
-  text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
+  text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
 }
 
-.text p
-{
+.text p {
   font-size: 1.5em;
   color: #fff;
   font-weight: 400;
-  max-width: 760px;
-  text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
+  max-width: 780px;
+  text-shadow: 3px 2px rgba(0, 140, 255, 0.575);
 }
 
-.text a
-{
+.text a {
   display: inline-block;
   font-size: 1em;
   background: #fff;
   padding: 10px 30px;
   text-transform: uppercase;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 700;
   margin-top: 10px;
   color: #111;
   letter-spacing: 2px;
@@ -192,63 +190,11 @@ video{
   text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
 }
 
-.text a:hover
-{
+.text a:hover {
   letter-spacing: 6px;
 }
 
-.social
-{
-  position: absolute;
-  z-index: 10;
-  bottom: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.menu
-{
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 300px;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-image: url(equipment.jpg);
-  background-position: center;
-  background-size: cover;
-}
-
-
-
-.menu ul
-{
-  position: relative;
-}
-
-.menu ul li
-{
-  list-style: none;
-}
-
-.menu ul li a
-{
-  text-decoration: none;
-  font-size: 24px;
-  font-weight: 500;
-  color: white;
-  text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
-}
-
-.menu ul li a:hover
-{
-  color: #30a1d6; 
-}
-
-.line{
+.line {
   width: 100%;
   height: 40px;
   background-color: black;
@@ -258,103 +204,169 @@ video{
   font-weight: 600;
   padding-top: 10px;
   border: solid black 1px;
-  text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
+  text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
 }
 
-
-
-.all{
+.all {
   height: 100%;
   background-color: black;
 }
 
-.main{
+/* Header ----------------------------------------------- */
+
+/* main ----------------------------------------------- */
+
+.main {
   width: 100%;
-  height: 700px;
+  height: 950px;
   display: flex;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
-.box{
+.box {
   width: 33.333%;
   height: 100%;
   background-size: cover;
-  background-position:center;
+  background-position: center;
   color: white;
-  padding: 160px 20px 20px 20px;
+  padding: 260px 20px 20px 20px;
   text-align: center;
-  transition: width 1s;
+  transition: width 2s;
 }
 
-.box h2{
+.box h2 {
   font-size: 40px;
   font-weight: 600;
   text-shadow: 2px 2px black;
 }
 
-.box p{
+.box p {
   font-size: 20px;
   width: 70%;
   margin: auto;
   text-shadow: 2px 2px black;
 }
 
-.box:hover{
+.box:hover {
   width: 45%;
 }
 
-.box img{
+.box img {
   height: 200px;
   width: 200px;
 }
 
-.photo1{
-  background-image: url(equipment.jpg);
+.photo1 {
+  background-image: url(photos/equipment.jpg);
 }
 
-.photo2{
-  background-image: url(equipment2.jpg);
+.photo2 {
+  background-image: url(photos/equipment2.jpg);
   border-left: black solid 5px;
   border-right: black solid 5px;
 }
 
-.photo3{
-  background-image: url(IMG_3823.jpg);
+.photo3 {
+  background-image: url(photos/IMG_3823.jpg);
 }
 
-.me{
-  width: 100%;
-  height:100%;
-  display: flex;
-  background-color: black;
+/* main ----------------------------------------------- */
+
+/* ABOUT ME ----------------------------------------------- */
+
+.about-content > div {
+  background: black;
+  padding: 4rem 4rem 2.5rem 5rem;
+  text-align: center;
   color: white;
+}
+.about-content {
+  padding-top: 80px;
+  padding-bottom: 160px;
+  background-color: black;
+  box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.39);
+  -webkit-box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.39);
+  -moz-box-shadow: 0px 0px 18px -1px rgba(0, 0, 0, 0.39);
+}
+
+.about-img img {
+  display: block;
+  width: 400px;
+}
+.about-img {
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 50%;
+  transition: all 0.5s ease-in-out;
+}
+
+.shadow {
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 50%;
+  width: 400px;
+  height: 320px;
+  position: relative;
+  cursor: pointer;
+}
+.shadow:hover .about-img {
+  transform: translateY(-10px);
+}
+.shadow:hover::after {
+  opacity: 1;
+}
+.about-content h2 {
+  font-size: 2rem;
+  margin: 0.2rem 0 0.6rem 0;
+  line-height: 1.2;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #edffec;
+  text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
+}
+.about-content h3 {
+  text-transform: uppercase;
+  font-weight: 400;
+  letter-spacing: 5px;
+  margin-top: 1.2rem;
   text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
 }
-
-.photo{
-  width: 70%;
-  height: 100%;
-  text-align: center;
+.icons {
+  background: black;
+  display: flex;
+  justify-content: center;
+  padding: 0.8rem 0;
+}
+.icons li {
+  list-style-type: none;
+  background: rgba(0, 140, 255, 0.575);
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
 }
 
-.photo img{
-  padding: 10px;
-  width: 46%;
-  border-radius: 50px;
+li a {
+  color: white;
 }
 
-.opis{
-  width: 30%;
-  height: 100%;
-  text-align: center;
-  padding: 60px 20px 20px 0px;
+.icons li:hover {
+  background: #edffec;
+  color: #000;
 }
 
-.opis{
-  font-size: 20px;
-}
+/* ABOUT ME ----------------------------------------------- */
 
-.galeria{
+/* Galeria ME ----------------------------------------------- */
+
+.galeria {
   width: 100%;
   height: 100%;
   display: flex;
@@ -362,26 +374,87 @@ video{
   background-color: black;
 }
 
-.galeria video{
+.galeria video {
   display: flex;
   width: 50%;
   border: black solid 2px;
 }
 
-.galeria img{
-  width: 25%;
-  border: black solid 2px;
+/* Galeria ME ----------------------------------------------- */
+
+/* kontakt i footer ----------------------------------------------- */
+
+.contact-form {
+  color: white;
+  padding: 40px;
+  border: 2px solid black;
+  border-radius: 10px;
+  text-align: center;
+  margin: 20px auto;
+  max-width: 600px;
+  box-shadow: 0 0 15px rgba(0, 140, 255, 0.575);
 }
 
-.kontakt{
-  text-align: center;
-  font-size: 50px;
+.contact-form h2 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
+}
+
+.form-group {
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  background-color: #111;
+  border: 2px solid white;
   color: white;
-  background-color: black;
+  border-radius: 5px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  background-color: #fff;
+  color: #111;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  text-transform: uppercase;
+  transition: 0.2s;
   text-shadow: 2px 2px rgba(0, 140, 255, 0.575);
 }
 
-footer{
+button:hover {
+  letter-spacing: 6px;
+}
+
+.kontakt {
+  text-align: center;
+  font-size: 50px;
+  height: 960px;
+  color: white;
+  background-color: black;
+  text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
+  font-weight: 600;
+}
+
+footer {
   width: 100%;
   text-align: center;
   color: white;
@@ -391,106 +464,117 @@ footer{
   font-size: 20px;
 }
 
-footer p{
+footer p {
   width: 33.333%;
   text-align: center;
-  text-shadow: 2px 2px black;
-
+  font-weight: 500;
+  text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
 }
-@media (max-width: 1400px){
-  .me{
-    flex-direction: column;
-  }
-  
-  .photo_none{
+@media (max-width: 1400px) {
+  .photo_none {
     display: none;
   }
-  
-  .photo{
+
+  .photo {
     width: 100%;
     font-size: 26px;
   }
-  
-  .photo img{
+
+  .photo img {
     width: 90%;
     margin-top: 10px;
   }
-  .opis{
-    width: 100%;
-    padding: 40px 40px 40px 40px;
-  }
 
-  .kontakt{
+  .kontakt {
     padding: 20px;
     font-size: 35px;
   }
-
 }
 
+/* kontakt i footer ----------------------------------------------- */
 
-@media (max-width: 991px)
-{
+@media (max-width: 991px) {
   .showcase,
-  .showcase header
-  {
+  .showcase header {
     padding: 40px;
   }
-  .text h2
-  {
+  .text h2 {
     font-size: 3em;
   }
-  .text h3
-  {
+  .text h3 {
     font-size: 2em;
   }
 
-  .kontakt{
-    font-size: 25PX;
+  .kontakt {
+    font-size: 25px;
   }
 
-  .box{
-    transition: none;
+  .box {
     width: 100%;
   }
 
-  .box:hover{
+  .box:hover {
     width: 100%;
   }
 
   .text p {
     font-size: 1.2em;
   }
+
+  .photo1,
+  .photo2,
+  .photo3 {
+    border-top: solid black 5px;
+    border-bottom: solid black 5px;
+    border-right: 0;
+    border-left: 0;
+  }
 }
 
-@media (max-width: 900px)
-{
-  .main{
+@media (max-width: 900px) {
+  .main {
     flex-direction: column;
     height: 100%;
   }
 
-  .box{
+  .box {
     width: 100%;
     padding: 100px 40px 100px 40px;
   }
 
-  .kontakt{
+  .kontakt {
     font-size: 15px;
     padding: 0;
   }
-  
-  .Name{
+
+  .Name {
     font-size: 20px;
   }
 
   .opis {
     font-size: 17px;
-}
+  }
 }
 
+@media (max-width: 600px) {
+  .shadow {
+    width: 250px;
+    height: 260px;
+  }
 
-@media (max-width: 400px){
-  footer{
+  .about-img img {
+    width: 250px;
+    height: 250px;
+  }
+
+  .about-img {
+    width: 250px;
+    height: 250px;
+  }
+}
+
+@media (max-width: 400px) {
+  footer {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -501,28 +585,24 @@ footer p{
     width: 100%;
   }
 
-  header .logo{
+  header .logo {
     font-size: 20px;
   }
 
   .showcase.active {
     right: 200px;
-}
+  }
 
-  .menu{
-  width: 200px;
-}
+  .text h2 {
+    font-size: 35px;
+  }
 
-  .text h2{
-  font-size: 35px;
-}
+  .text h3 {
+    font-size: 20px;
+  }
 
-  .text h3{
-  font-size: 20px;
-}
-
-.box img{
-  height: 140px;
-  width: 140px;
-}
+  .box img {
+    height: 140px;
+    width: 140px;
+  }
 }
