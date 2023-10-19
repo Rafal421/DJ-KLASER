@@ -207,6 +207,12 @@ video {
   text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
 }
 
+
+.d{
+  padding: 0 0 20px 0;
+  background-color: black;
+}
+
 .all {
   height: 100%;
   background-color: black;
@@ -420,6 +426,13 @@ textarea {
   border: 2px solid white;
   color: white;
   border-radius: 5px;
+  transition: 2s;
+}
+
+input:hover,
+textarea:hover{
+  background-color: rgba(0, 140, 255, 0.313);
+  transition: 2s;
 }
 
 textarea {
@@ -430,7 +443,7 @@ button {
   background-color: #fff;
   color: #111;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   padding: 10px 20px;
   border: none;
   cursor: pointer;
@@ -469,6 +482,7 @@ footer p {
   text-align: center;
   font-weight: 500;
   text-shadow: 4px 2px rgba(0, 140, 255, 0.575);
+  padding: 5px 0 5px 0;
 }
 @media (max-width: 1400px) {
   .photo_none {
