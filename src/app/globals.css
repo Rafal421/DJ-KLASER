@@ -1,0 +1,141 @@
+@font-face {
+  font-family: Audiowide;
+  src: url("/public/fonts/Audiowide-Regular.ttf");
+}
+
+@import "tailwindcss";
+
+@theme {
+  --font-Audiowide: Audiowide, sans-serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-rajdhani);
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 0%;
+    --foreground: 0 0% 100%;
+
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 0 0% 0%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 210 100% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 9%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 0 0% 9%;
+    --muted-foreground: 0 0% 64.9%;
+
+    --accent: 0 0% 9%;
+    --accent-foreground: 0 0% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 0 0% 9%;
+    --input: 0 0% 9%;
+    --ring: 210 100% 50%;
+
+    --radius: 0.5rem;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1a1a1a;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2a2a2a;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Gradient text effect */
+.gradient-text {
+  background: linear-gradient(90deg, #3b82f6, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}
+
+/* Section transitions - SIMPLIFIED STATIC TRANSITIONS */
+.section-transition-1 {
+  background: linear-gradient(to bottom, #000000, #0a1a2f);
+  position: relative;
+}
+
+.section-transition-2 {
+  background: linear-gradient(to bottom, #0a1a2f, #000000);
+  position: relative;
+}
+
+.section-transition-3 {
+  background: linear-gradient(to bottom, #000000, #0a1a2f);
+  position: relative;
+}
+
+.section-transition-4 {
+  background: linear-gradient(to bottom, #0a1a2f, #000000);
+  position: relative;
+}
+
+.scetion-transition-5 {
+  background: linear-gradient(#000000, #030c18);
+}
+
+/* Neon glow effects - REDUCED INTENSITY */
+.neon-blue {
+  text-shadow: 0 0 3px rgba(59, 130, 246, 0.3), 0 0 10px rgba(59, 130, 246, 0.2);
+}
+
+.neon-box {
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.2), 0 0 15px rgba(59, 130, 246, 0.05);
+}
+
+/* Remove the gradient animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Full bleed gallery */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}

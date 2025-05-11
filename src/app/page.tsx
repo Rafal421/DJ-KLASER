@@ -1,0 +1,790 @@
+"use client";
+
+import type React from "react";
+
+import { useRef } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  Music,
+  Calendar,
+  Headphones,
+  Users,
+  Disc,
+  ChevronDown,
+  ArrowRight,
+  Phone,
+  Mail,
+  MapPin,
+  Send,
+  Award,
+  Headset,
+  UserCheck,
+  Star,
+  Heart,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import Navbar from "@/components/navbar";
+import GalleryMasonry from "@/components/gallery-masonry";
+import Footer from "@/components/footer";
+import { motion } from "framer-motion";
+
+export default function Home() {
+  const homeRef = useRef<HTMLDivElement | null>(null);
+  const aboutRef = useRef<HTMLDivElement | null>(null);
+  const servicesRef = useRef<HTMLDivElement | null>(null);
+  const galleryRef = useRef<HTMLDivElement | null>(null);
+  const contactRef = useRef<HTMLDivElement | null>(null);
+
+  const sections: {
+    id: string;
+    ref: React.RefObject<HTMLDivElement | null>;
+    label: string;
+  }[] = [
+    { id: "home", ref: homeRef, label: "Home" },
+    { id: "about", ref: aboutRef, label: "About Me" },
+    { id: "services", ref: servicesRef, label: "Services" },
+    { id: "gallery", ref: galleryRef, label: "Gallery" },
+    { id: "contact", ref: contactRef, label: "Contact" },
+  ];
+
+  const scrollToSection = (
+    sectionRef: React.RefObject<HTMLDivElement | null>
+  ) => {
+    if (sectionRef.current) {
+      sectionRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  return (
+    <div className="bg-black text-white min-h-screen">
+      <Navbar sections={sections} scrollToSection={scrollToSection} />
+
+      {/* Hero Section */}
+      <section
+        ref={homeRef}
+        id="home"
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+      >
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black z-10" />
+          <Image
+            src="/placeholder.svg?height=1080&width=1920&text=DJ+KALSER"
+            alt="DJ Kalser performing"
+            fill
+            className="object-cover"
+            priority
+          />
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="relative z-10 container mx-auto px-4 text-center"
+        >
+          <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-tight font-display font-Audiowide">
+            DJ <span className="gradient-text neon-blue">KALSER</span>
+          </h1>
+          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-300 font-body">
+            Creating unforgettable musical experiences for every occasion
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
+              onClick={() => scrollToSection(aboutRef)}
+            >
+              Explore Website
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </motion.div>
+        <div
+          className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-10 animate-bounce cursor-pointer"
+          onClick={() => scrollToSection(aboutRef)}
+        >
+          <ChevronDown className="h-8 w-8 text-blue-500" />
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section ref={aboutRef} id="about" className="py-24 section-transition-1">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
+              About Me
+            </h2>
+            <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
+          </motion.div>
+
+          {/* Wide photo for About Me section - standardized aspect ratio */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="mb-12 relative w-full aspect-[21/9] rounded-xl overflow-hidden neon-box"
+          >
+            <Image
+              src="/placeholder.svg?height=800&width=1600&text=DJ+KALSER"
+              alt="DJ Kalser Wide Portrait"
+              fill
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/40 to-transparent"></div>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <motion.h3
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="text-2xl font-bold mb-6 gradient-text font-display"
+            >
+              The Sound Architect
+            </motion.h3>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="text-gray-300 mb-4 font-body"
+            >
+              With over a decade of experience in the industry, Ive had the
+              privilege of being part of hundreds of special celebrations, from
+              intimate weddings to large-scale events and festivals.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="text-gray-300 mb-4 font-body"
+            >
+              My journey as a DJ began when I was just 16, mixing tracks for
+              friends and family gatherings. What started as a passion quickly
+              evolved into a profession as I honed my skills and expanded my
+              musical repertoire.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              viewport={{ once: true }}
+              className="text-gray-300 mb-6 font-body"
+            >
+              I believe that every event is unique, and I take pride in creating
+              customized playlists and atmospheres that reflect the personality
+              and preferences of my clients. My goal is simple: to create
+              unforgettable musical experiences that keep the dance floor packed
+              all night long.
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8"
+            >
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4 border border-blue-500/30 neon-box">
+                  <Disc className="h-6 w-6 text-blue-500" />
+                </div>
+                <div>
+                  <p className="font-medium text-white font-body">10+ Years</p>
+                  <p className="text-sm text-gray-400 font-body">Experience</p>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4 border border-blue-500/30 neon-box">
+                  <Music className="h-6 w-6 text-blue-500" />
+                </div>
+                <div>
+                  <p className="font-medium text-white font-body">500+</p>
+                  <p className="text-sm text-gray-400 font-body">Events</p>
+                </div>
+              </div>
+              <div className="flex items-center">
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4 border border-blue-500/30 neon-box">
+                  <Heart className="h-6 w-6 text-blue-500" />
+                </div>
+                <div>
+                  <p className="font-medium text-white font-body">1000+</p>
+                  <p className="text-sm text-gray-400 font-body">
+                    Happy Clients
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* What Makes Me Different Section */}
+      <section className="py-24 section-transition-2">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
+              What Makes Me <span className="gradient-text">Different?</span>
+            </h2>
+            <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+              I offer music and lighting services with professional MC hosting
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* High Quality Equipment */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="bg-[#0a0a0a] p-6 rounded-lg border border-blue-500/20 neon-box"
+            >
+              <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <Headset className="h-8 w-8 text-blue-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-center font-display">
+                HIGH QUALITY EQUIPMENT
+              </h3>
+              <p className="text-gray-300 text-center font-body">
+                My sound system and lighting are of the highest quality.
+              </p>
+            </motion.div>
+
+            {/* Professionalism */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              viewport={{ once: true }}
+              className="bg-[#0a0a0a] p-6 rounded-lg border border-blue-500/20 neon-box"
+            >
+              <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <Award className="h-8 w-8 text-blue-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-center font-display">
+                PROFESSIONALISM
+              </h3>
+              <p className="text-gray-300 text-center font-body">
+                I make every effort to ensure your event runs smoothly.
+              </p>
+            </motion.div>
+
+            {/* Individual Approach */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="bg-[#0a0a0a] p-6 rounded-lg border border-blue-500/20 neon-box"
+            >
+              <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <UserCheck className="h-8 w-8 text-blue-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-center font-display">
+                INDIVIDUAL APPROACH
+              </h3>
+              <p className="text-gray-300 text-center font-body">
+                I talk with you to understand your expectations and adapt to
+                them.
+              </p>
+            </motion.div>
+
+            {/* Rich Experience */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              viewport={{ once: true }}
+              className="bg-[#0a0a0a] p-6 rounded-lg border border-blue-500/20 neon-box"
+            >
+              <div className="w-16 h-16 bg-blue-500/10 rounded-full flex items-center justify-center mb-4 mx-auto">
+                <Star className="h-8 w-8 text-blue-500" />
+              </div>
+              <h3 className="text-xl font-bold mb-3 text-center font-display">
+                RICH EXPERIENCE
+              </h3>
+              <p className="text-gray-300 text-center font-body">
+                With years of experience, Ive earned the trust of many clients.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Services Section */}
+      <section
+        ref={servicesRef}
+        id="services"
+        className="py-24 section-transition-3"
+      >
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
+              Services
+            </h2>
+            <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+              Professional DJ services tailored to your specific event needs
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {/* Left Column */}
+            <div className="space-y-8">
+              {/* Wedding Events */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-blue-500/20 to-blue-900/30 p-8 rounded-xl border border-blue-500/30 backdrop-blur-sm neon-box"
+              >
+                <div className="mb-6">
+                  <Calendar className="h-8 w-8 text-blue-500" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 font-display">
+                  Wedding Events
+                </h3>
+                <p className="text-gray-300 mb-6 font-body">
+                  Create magical moments on your special day with our
+                  professional wedding DJ services. From romantic first dances
+                  to energetic party sets.
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Ceremony music coordination",
+                    "Cocktail hour and dinner background music",
+                    "Reception and dance floor entertainment",
+                    "Custom playlists tailored to your preferences",
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start">
+                      <div className="h-5 w-5 text-green-500 mr-2">✓</div>
+                      <span className="text-gray-300 text-sm font-body">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Wedding Image - standardized aspect ratio */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
+              >
+                <Image
+                  src="/placeholder.svg?height=600&width=1200&text=Wedding+DJ"
+                  alt="Wedding DJ Service"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Private Parties */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-blue-600/20 to-blue-900/30 p-8 rounded-xl border border-blue-600/30 backdrop-blur-sm neon-box"
+              >
+                <div className="mb-6">
+                  <Users className="h-8 w-8 text-blue-500" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 font-display">
+                  Private Parties
+                </h3>
+                <p className="text-gray-300 mb-6 font-body">
+                  Make your private event unforgettable with customized music
+                  that matches the mood and keeps your guests entertained.
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "Birthday parties and anniversaries",
+                    "Corporate events and product launches",
+                    "Holiday parties and celebrations",
+                    "Custom playlists and song requests",
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start">
+                      <div className="h-5 w-5 text-green-500 mr-2">✓</div>
+                      <span className="text-gray-300 text-sm font-body">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+            </div>
+
+            {/* Right Column */}
+            <div className="space-y-8">
+              {/* Corporate Image - standardized aspect ratio */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.5 }}
+                viewport={{ once: true }}
+                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
+              >
+                <Image
+                  src="/placeholder.svg?height=600&width=1200&text=Corporate+Event"
+                  alt="Corporate Event"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+
+              {/* Club Events */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                viewport={{ once: true }}
+                className="bg-gradient-to-br from-blue-400/20 to-blue-900/30 p-8 rounded-xl border border-blue-400/30 backdrop-blur-sm neon-box"
+              >
+                <div className="mb-6">
+                  <Music className="h-8 w-8 text-blue-500" />
+                </div>
+                <h3 className="text-xl font-bold mb-3 font-display">
+                  Club Events
+                </h3>
+                <p className="text-gray-300 mb-6 font-body">
+                  Elevate your club night with high-energy sets that keep the
+                  crowd moving. Specializing in house, EDM, hip-hop, and open
+                  format.
+                </p>
+                <ul className="space-y-2">
+                  {[
+                    "High-energy DJ sets",
+                    "State-of-the-art sound and lighting",
+                    "Crowd reading and interaction",
+                    "Seamless mixing and transitions",
+                  ].map((feature, i) => (
+                    <li key={i} className="flex items-start">
+                      <div className="h-5 w-5 text-green-500 mr-2">✓</div>
+                      <span className="text-gray-300 text-sm font-body">
+                        {feature}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              {/* Club Image - standardized aspect ratio */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                viewport={{ once: true }}
+                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
+              >
+                <Image
+                  src="/placeholder.svg?height=600&width=1200&text=Club+Event"
+                  alt="Club Event"
+                  fill
+                  className="object-cover"
+                />
+              </motion.div>
+            </div>
+          </div>
+
+          {/* Equipment Section */}
+          <div className="mt-20">
+            <motion.h3
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="text-2xl font-bold mb-8 text-center font-display font-Audiowide"
+            >
+              Premium Equipment
+            </motion.h3>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {[
+                {
+                  title: "Sound Systems",
+                  icon: <Headphones className="h-6 w-6 text-blue-500" />,
+                  description:
+                    "Top-of-the-line speakers and audio equipment for crystal clear sound at any venue size.",
+                  color: "from-blue-500/20 to-blue-900/30",
+                  border: "border-blue-500/30",
+                },
+                {
+                  title: "Lighting Effects",
+                  icon: <Disc className="h-6 w-6 text-blue-500" />,
+                  description:
+                    "Dynamic lighting setups including moving heads, lasers, and atmospheric effects.",
+                  color: "from-blue-500/20 to-blue-900/30",
+                  border: "border-blue-500/30",
+                },
+                {
+                  title: "DJ Gear",
+                  icon: <Music className="h-6 w-6 text-blue-500" />,
+                  description:
+                    "Professional controllers, mixers, and software for seamless mixing and performance.",
+                  color: "from-blue-500/20 to-blue-900/30",
+                  border: "border-blue-500/30",
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className={`bg-gradient-to-br ${item.color} p-6 rounded-lg ${item.border} neon-box`}
+                >
+                  <div className="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center mb-4">
+                    {item.icon}
+                  </div>
+                  <h4 className="text-lg font-medium mb-2 font-display">
+                    {item.title}
+                  </h4>
+                  <p className="text-gray-300 text-sm font-body">
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Gallery Section */}
+      <section
+        ref={galleryRef}
+        id="gallery"
+        className="py-24 section-transition-4"
+      >
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
+              Gallery
+            </h2>
+            <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+              Moments captured from unforgettable events and performances
+            </p>
+          </motion.div>
+
+          <GalleryMasonry />
+
+          <div className="mt-16 text-center">
+            <Button
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
+              asChild
+            >
+              <Link href="/gallery">
+                View Full Gallery
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Section */}
+      <section
+        ref={contactRef}
+        id="contact"
+        className="py-24 scetion-transition-5"
+      >
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
+              Contact
+            </h2>
+            <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+              Get in touch to book your event or inquire about services
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-2xl font-bold mb-6 font-display">
+                Get In Touch
+              </h3>
+              <p className="text-gray-300 mb-8 font-body">
+                Have questions about my services or want to book for your event?
+                Fill out the form or contact me directly using the information
+                below.
+              </p>
+
+              <div className="space-y-6">
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4 border border-blue-500/30 neon-box">
+                    <Phone className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-white font-display">
+                      Phone
+                    </h4>
+                    <p className="text-gray-300 font-body">+1 (123) 456-7890</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4 border border-blue-500/30 neon-box">
+                    <Mail className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-white font-display">
+                      Email
+                    </h4>
+                    <p className="text-gray-300 font-body">info@djkalser.com</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start">
+                  <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mr-4 border border-blue-500/30 neon-box">
+                    <MapPin className="h-5 w-5 text-blue-500" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-white font-display">
+                      Based In
+                    </h4>
+                    <p className="text-gray-300 font-body">
+                      Los Angeles, CA
+                      <br />
+                      Available for worldwide bookings
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Contact Form - Updated with combined name field */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="bg-gradient-to-br from-blue-500/10 to-blue-900/20 rounded-xl border border-blue-500/20 p-8 neon-box"
+            >
+              <h3 className="text-xl font-bold mb-6 font-display">
+                Send a Message
+              </h3>
+              <form className="space-y-6">
+                <div className="space-y-2">
+                  <label
+                    htmlFor="fullName"
+                    className="text-sm font-medium text-gray-300 font-body"
+                  >
+                    Full Name
+                  </label>
+                  <Input
+                    id="fullName"
+                    placeholder="First and Last Name"
+                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="email"
+                    className="text-sm font-medium text-gray-300 font-body"
+                  >
+                    Email Address
+                  </label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="Your email"
+                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="phone"
+                    className="text-sm font-medium text-gray-300 font-body"
+                  >
+                    Phone Number
+                  </label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="Your phone number"
+                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="message"
+                    className="text-sm font-medium text-gray-300 font-body"
+                  >
+                    Message
+                  </label>
+                  <Textarea
+                    id="message"
+                    placeholder="Tell me about your event..."
+                    rows={4}
+                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                  />
+                </div>
+
+                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white neon-box font-body">
+                  <Send className="h-4 w-4 mr-2" />
+                  Send Message
+                </Button>
+              </form>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer - Using the new Footer component */}
+      <Footer />
+    </div>
+  );
+}
