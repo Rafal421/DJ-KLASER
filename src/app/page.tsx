@@ -4,7 +4,6 @@ import type React from "react";
 
 import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import {
   Music,
   Calendar,
@@ -71,11 +70,10 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black z-10" />
           <Image
-            src="/placeholder.svg?height=1080&width=1920&text=DJ+KALSER"
-            alt="DJ Kalser performing"
+            src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg"
+            alt="DJ Kalser Wide Portrait"
             fill
             className="object-cover"
-            priority
           />
         </div>
         <motion.div
@@ -85,7 +83,7 @@ export default function Home() {
           className="relative z-10 container mx-auto px-4 text-center"
         >
           <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-tight font-display font-Audiowide">
-            DJ <span className="gradient-text neon-blue">KALSER</span>
+            DJ <span className="gradient-text neon-blue">KLASER</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-300 font-body">
             Creating unforgettable musical experiences for every occasion
@@ -134,8 +132,8 @@ export default function Home() {
             className="mb-12 relative w-full aspect-[21/9] rounded-xl overflow-hidden neon-box"
           >
             <Image
-              src="/placeholder.svg?height=800&width=1600&text=DJ+KALSER"
-              alt="DJ Kalser Wide Portrait"
+              src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140882/591-1-2048x1365_xbzbj0.jpg"
+              alt="DJ Klaser Wide Portrait"
               fill
               className="object-cover"
             />
@@ -398,10 +396,10 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
                 viewport={{ once: true }}
-                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
+                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box "
               >
                 <Image
-                  src="/placeholder.svg?height=600&width=1200&text=Wedding+DJ"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747141319/SS-444-min-1-scaled_zyi96m.jpg"
                   alt="Wedding DJ Service"
                   fill
                   className="object-cover"
@@ -452,10 +450,10 @@ export default function Home() {
                 whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
+                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-16"
               >
                 <Image
-                  src="/placeholder.svg?height=600&width=1200&text=Corporate+Event"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138840/party_ing2lh.jpg"
                   alt="Corporate Event"
                   fill
                   className="object-cover"
@@ -507,7 +505,7 @@ export default function Home() {
                 className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
               >
                 <Image
-                  src="/placeholder.svg?height=600&width=1200&text=Club+Event"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138838/equipment_rwqqao.jpg"
                   alt="Club Event"
                   fill
                   className="object-cover"
@@ -603,19 +601,6 @@ export default function Home() {
           </motion.div>
 
           <GalleryMasonry />
-
-          <div className="mt-16 text-center">
-            <Button
-              size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
-              asChild
-            >
-              <Link href="/gallery">
-                View Full Gallery
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
         </div>
       </section>
 
