@@ -1,8 +1,7 @@
 "use client";
 
 import type React from "react";
-
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import {
   Music,
@@ -21,6 +20,7 @@ import {
   UserCheck,
   Star,
   Heart,
+  Loader2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,6 +29,19 @@ import Navbar from "@/components/navbar";
 import GalleryMasonry from "@/components/gallery-masonry";
 import Footer from "@/components/footer";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { z } from "zod";
+
+// Form validation schema
+const formSchema = z.object({
+  fullName: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().email("Invalid email address"),
+  phone: z.string().min(9, "Phone number must be at least 9 digits"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+  subject: z.string().min(3, "Subject must be at least 3 characters"),
+});
+
+type FormData = z.infer<typeof formSchema>;
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement | null>(null);
@@ -36,6 +49,20 @@ export default function Home() {
   const servicesRef = useRef<HTMLDivElement | null>(null);
   const galleryRef = useRef<HTMLDivElement | null>(null);
   const contactRef = useRef<HTMLDivElement | null>(null);
+
+  const [formStatus, setFormStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+  const [formErrors, setFormErrors] = useState<
+    Partial<Record<keyof FormData, string>>
+  >({});
+  const [formData, setFormData] = useState<FormData>({
+    fullName: "",
+    email: "",
+    phone: "",
+    message: "",
+    subject: "",
+  });
 
   const sections: {
     id: string;
@@ -57,6 +84,91 @@ export default function Home() {
     }
   };
 
+  const validateField = (name: keyof FormData, value: string) => {
+    try {
+      formSchema.shape[name].parse(value);
+      // Remove error for this field if it passes validation
+      const newErrors = { ...formErrors };
+      delete newErrors[name];
+      setFormErrors(newErrors);
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        setFormErrors((prev) => ({ ...prev, [name]: error.issues[0].message }));
+      }
+      return false;
+    }
+  };
+
+  const validateForm = () => {
+    try {
+      formSchema.parse(formData);
+      return true;
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const newErrors: Partial<Record<keyof FormData, string>> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) {
+            newErrors[err.path[0] as keyof FormData] = err.message;
+          }
+        });
+        setFormErrors(newErrors);
+      }
+      return false;
+    }
+  };
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+    validateField(id as keyof FormData, value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Validate all fields before submission
+    if (!validateForm()) {
+      setFormStatus("error");
+      setTimeout(() => setFormStatus("idle"), 3000);
+      return;
+    }
+
+    setFormStatus("loading");
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      setFormStatus("success");
+      setFormData({
+        fullName: "",
+        email: "",
+        phone: "",
+        message: "",
+        subject: "",
+      });
+      setFormErrors({});
+
+      setTimeout(() => setFormStatus("idle"), 3000);
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setFormStatus("error");
+      setTimeout(() => setFormStatus("idle"), 3000);
+    }
+  };
+
   return (
     <div className="bg-black text-white min-h-screen">
       <Navbar sections={sections} scrollToSection={scrollToSection} />
@@ -69,11 +181,12 @@ export default function Home() {
       >
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black z-10" />
-          <Image
-            src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg"
-            alt="DJ Kalser Wide Portrait"
-            fill
-            className="object-cover"
+          <video
+            src="https://res.cloudinary.com/dscvxyjvn/video/upload/v1747138841/Untitled_axgkb1.mp4"
+            autoPlay
+            loop
+            muted
+            className="object-cover w-full h-full absolute top-0 left-0"
           />
         </div>
         <motion.div
@@ -137,7 +250,7 @@ export default function Home() {
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/40 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
           </motion.div>
 
           <div className="max-w-4xl mx-auto">
@@ -601,6 +714,19 @@ export default function Home() {
           </motion.div>
 
           <GalleryMasonry />
+
+          <div className="mt-16 text-center">
+            <Button
+              size="lg"
+              className="bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
+              asChild
+            >
+              <Link href="/gallery">
+                View Full Gallery
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
@@ -608,7 +734,7 @@ export default function Home() {
       <section
         ref={contactRef}
         id="contact"
-        className="py-24 scetion-transition-5"
+        className="py-24 section-transition-5"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -687,7 +813,7 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Contact Form - Updated with combined name field */}
+            {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
@@ -698,7 +824,8 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-6 font-display">
                 Send a Message
               </h3>
-              <form className="space-y-6">
+
+              <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
                   <label
                     htmlFor="fullName"
@@ -708,9 +835,39 @@ export default function Home() {
                   </label>
                   <Input
                     id="fullName"
+                    value={formData.fullName}
+                    onChange={handleChange}
                     placeholder="First and Last Name"
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                    required
                   />
+                  {formErrors.fullName && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.fullName}
+                    </p>
+                  )}
+                </div>
+
+                <div className="space-y-2">
+                  <label
+                    htmlFor="subject"
+                    className="text-sm font-medium text-gray-300 font-body"
+                  >
+                    Subject
+                  </label>
+                  <Input
+                    id="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    placeholder="What's this about?"
+                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                    required
+                  />
+                  {formErrors.subject && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.subject}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -723,9 +880,17 @@ export default function Home() {
                   <Input
                     id="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     placeholder="Your email"
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                    required
                   />
+                  {formErrors.email && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.email}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -738,9 +903,17 @@ export default function Home() {
                   <Input
                     id="phone"
                     type="tel"
+                    value={formData.phone}
+                    onChange={handleChange}
                     placeholder="Your phone number"
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                    required
                   />
+                  {formErrors.phone && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.phone}
+                    </p>
+                  )}
                 </div>
 
                 <div className="space-y-2">
@@ -752,16 +925,52 @@ export default function Home() {
                   </label>
                   <Textarea
                     id="message"
+                    value={formData.message}
+                    onChange={handleChange}
                     placeholder="Tell me about your event..."
                     rows={4}
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                    required
                   />
+                  {formErrors.message && (
+                    <p className="text-red-500 text-sm mt-1">
+                      {formErrors.message}
+                    </p>
+                  )}
                 </div>
 
-                <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white neon-box font-body">
-                  <Send className="h-4 w-4 mr-2" />
-                  Send Message
+                <Button
+                  type="submit"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
+                  disabled={
+                    formStatus === "loading" ||
+                    Object.keys(formErrors).length > 0
+                  }
+                >
+                  {formStatus === "loading" ? (
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    <>
+                      <Send className="h-4 w-4 mr-2" />
+                      Send Message
+                    </>
+                  )}
                 </Button>
+
+                {formStatus === "success" && (
+                  <p className="text-green-500 text-sm text-center">
+                    Message sent successfully! We&apos;ll get back to you soon.
+                  </p>
+                )}
+
+                {formStatus === "error" && (
+                  <p className="text-red-500 text-sm text-center">
+                    Failed to send message. Please check the form and try again.
+                  </p>
+                )}
               </form>
             </motion.div>
           </div>

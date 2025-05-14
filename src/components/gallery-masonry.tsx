@@ -1,5 +1,7 @@
 "use client";
 
+import type React from "react";
+
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -14,7 +16,6 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
-// Updated with actual different image URLs
 const galleryItems = [
   {
     id: 1,
@@ -31,16 +32,63 @@ const galleryItems = [
   {
     id: 3,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140884/519-1-scaled_xyz123.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/photo12_gu60iu.jpg",
     description: "Crowd enjoying the music at a festival",
   },
   {
     id: 4,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140885/520-1-scaled_abc456.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/ME_pn08qp.jpg",
     description: "Close-up of turntable in action",
   },
-  // Add more unique images as needed
+  {
+    id: 5,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/ME2_fnzp27.jpg",
+    description: "Professional DJ equipment setup for live events",
+  },
+  {
+    id: 6,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
+    description: "Club atmosphere with dynamic lighting",
+  },
+  {
+    id: 7,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+    description: "Crowd enjoying the music at a festival",
+  },
+  {
+    id: 8,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+    description: "Close-up of turntable in action",
+  },
+  {
+    id: 9,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+    description: "Professional DJ equipment setup for live events",
+  },
+  {
+    id: 10,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
+    description: "Club atmosphere with dynamic lighting",
+  },
+  {
+    id: 11,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+    description: "Crowd enjoying the music at a festival",
+  },
+  {
+    id: 12,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+    description: "Close-up of turntable in action",
+  },
 ];
 
 export default function GalleryMasonry() {
@@ -76,7 +124,6 @@ export default function GalleryMasonry() {
     setShowInfo(false);
   };
 
-  // Keyboard navigation
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (selectedImage === null) return;
 
@@ -108,7 +155,7 @@ export default function GalleryMasonry() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: index * 0.03 }}
-            className="group relative overflow-hidden cursor-pointer bg-white rounded-lg border border-neutral-200 shadow-sm aspect-[4/3] hover:shadow-md transition-all duration-300"
+            className="group relative overflow-hidden cursor-pointer bg-black rounded-xl shadow-sm aspect-[4/3] hover:shadow-md transition-all duration-300"
             onClick={() => {
               setSelectedImage(index);
               setDirection(0);
@@ -116,12 +163,12 @@ export default function GalleryMasonry() {
             aria-label={`View image ${index + 1}: ${item.description}`}
           >
             <Image
-              src={item.image}
+              src={item.image || "/placeholder.svg"}
               alt={item.description}
               fill
               className="object-cover transition-transform duration-300 group-hover:scale-105"
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              priority={index < 4} // Only prioritize first few images
+              priority={index < 4}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
               <div className="p-1 rounded-md bg-black/40 backdrop-blur-sm">
@@ -181,13 +228,13 @@ export default function GalleryMasonry() {
             </div>
 
             <div className="w-full max-w-6xl max-h-[90vh] relative">
-              {/* Navigation */}
+              {/* Navigation - Mobile friendly with larger touch targets */}
               <button
-                className="hidden sm:flex fixed left-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 items-center justify-center text-white hover:bg-white/10 rounded-full transition-colors"
+                className="fixed left-0 sm:left-4 top-1/2 -translate-y-1/2 z-50 w-16 h-16 sm:w-12 sm:h-12 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
                 onClick={goToPrev}
                 aria-label="Previous image"
               >
-                <ChevronLeft className="h-6 w-6" />
+                <ChevronLeft className="h-8 w-8 sm:h-6 sm:w-6" />
               </button>
 
               {/* Image content */}
@@ -217,31 +264,15 @@ export default function GalleryMasonry() {
                     className="absolute inset-0 flex items-center justify-center"
                   >
                     <Image
-                      src={galleryItems[selectedImage].image}
+                      src={
+                        galleryItems[selectedImage].image || "/placeholder.svg"
+                      }
                       alt={galleryItems[selectedImage].description}
                       fill
                       className="object-contain"
                       priority
                       sizes="(max-width: 1024px) 100vw, 80vw"
                     />
-
-                    {/* Mobile navigation */}
-                    <div className="sm:hidden fixed inset-x-0 bottom-8 flex justify-center gap-8 z-50">
-                      <button
-                        className="w-12 h-12 flex items-center justify-center text-white bg-black/50 hover:bg-black/70 rounded-full transition-colors"
-                        onClick={goToPrev}
-                        aria-label="Previous image"
-                      >
-                        <ChevronLeft className="h-6 w-6" />
-                      </button>
-                      <button
-                        className="w-12 h-12 flex items-center justify-center text-white bg-black/50 hover:bg-black/70 rounded-full transition-colors"
-                        onClick={goToNext}
-                        aria-label="Next image"
-                      >
-                        <ChevronRight className="h-6 w-6" />
-                      </button>
-                    </div>
 
                     {/* Info panel */}
                     <AnimatePresence>
@@ -263,11 +294,11 @@ export default function GalleryMasonry() {
               </div>
 
               <button
-                className="hidden sm:flex fixed right-4 top-1/2 -translate-y-1/2 z-50 w-12 h-12 items-center justify-center text-white hover:bg-white/10 rounded-full transition-colors"
+                className="fixed right-0 sm:right-4 top-1/2 -translate-y-1/2 z-50 w-16 h-16 sm:w-12 sm:h-12 flex items-center justify-center text-white hover:bg-white/10 transition-colors"
                 onClick={goToNext}
                 aria-label="Next image"
               >
-                <ChevronRight className="h-6 w-6" />
+                <ChevronRight className="h-8 w-8 sm:h-6 sm:w-6" />
               </button>
             </div>
 
@@ -277,6 +308,18 @@ export default function GalleryMasonry() {
                 {selectedImage + 1} / {galleryItems.length}
               </div>
             </div>
+
+            {/* Mobile swipe areas - invisible but tappable */}
+            <div
+              className="fixed left-0 top-0 bottom-0 w-1/4 z-40 sm:hidden"
+              onClick={goToPrev}
+              aria-hidden="true"
+            />
+            <div
+              className="fixed right-0 top-0 bottom-0 w-1/4 z-40 sm:hidden"
+              onClick={goToNext}
+              aria-hidden="true"
+            />
           </motion.div>
         )}
       </AnimatePresence>

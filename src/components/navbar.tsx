@@ -59,7 +59,7 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
         <a href="#home" className="text-2xl font-bold text-white font-display ">
           DJ
           <span className="gradient-text neon-blue font-Audiowide ">
-            KALSER
+            KLASER
           </span>
         </a>
 
