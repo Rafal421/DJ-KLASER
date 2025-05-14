@@ -170,7 +170,7 @@ export default function Home() {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen">
+    <div className="bg-black text-white min-h-screen w-full overflow-x-hidden relative">
       <Navbar sections={sections} scrollToSection={scrollToSection} />
 
       {/* Hero Section */}
@@ -195,10 +195,11 @@ export default function Home() {
           transition={{ duration: 0.8 }}
           className="relative z-10 container mx-auto px-4 text-center"
         >
-          <h1 className="text-6xl md:text-8xl font-bold mb-4 tracking-tight font-display font-Audiowide">
-            DJ <span className="gradient-text neon-blue">KLASER</span>
+          <h1 className="text-6xl sm:text-6xl md:text-6xl lg:text-8xl font-bold mb-4 tracking-tighter font-display font-Audiowide flex items-center justify-center gap-[0.1em] sm:gap-[0.15em]">
+            <span>DJ</span>
+            <span className="gradient-text neon-blue">KLASER</span>
           </h1>
-          <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-gray-300 font-body">
+          <p className="text-lg sm:text-base md:text-2xl mb-8 max-w-2xl mx-auto text-gray-300 font-body">
             Creating unforgettable musical experiences for every occasion
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

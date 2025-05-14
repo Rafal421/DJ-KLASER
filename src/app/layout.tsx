@@ -44,12 +44,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      {/* <body
-        className={`${ptSerif.className} ${montserrat.variable} ${poppins.variable}`}
-      >
-        {children}
-      </body> */}
-
       <body className={`${audiowide.variable} ${rajdhani.variable} font-sans`}>
         {children}
       </body>

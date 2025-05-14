@@ -50,19 +50,16 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-        scrolled
-          ? "bg-black/80 backdrop-blur-md py-3 shadow-lg shadow-dj-blue/10"
-          : "bg-transparent py-5"
+        scrolled || mobileMenuOpen
+          ? "bg-black shadow-lg shadow-dj-blue/10"
+          : "bg-transparent"
       )}
     >
-      <nav className="container mx-auto px-4 flex items-center justify-between">
-        <a href="#home" className="text-2xl font-bold text-white font-display ">
+      <nav className="container mx-auto px-4 h-[72px] flex items-center justify-between">
+        <a href="#home" className="text-2xl font-bold text-white font-display">
           DJ
-          <span className="gradient-text neon-blue font-Audiowide ">
-            KLASER
-          </span>
+          <span className="gradient-text neon-blue font-Audiowide">KLASER</span>
         </a>
-
         {/* Desktop Navigation */}
         <div className="hidden md:flex items-center space-x-1">
           {sections.map((section) => (
@@ -88,8 +85,7 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
               )}
             </button>
           ))}
-        </div>
-
+        </div>{" "}
         {/* Mobile menu button */}
         <div className="md:hidden">
           <Button
@@ -97,44 +93,67 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
             size="icon"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
-            className="text-white hover:bg-dj-blue/20"
-          >
-            {mobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
+            className={cn(
+              "relative w-10 h-10 flex items-center justify-center text-white transition-all duration-300",
+              mobileMenuOpen
+                ? "bg-dj-blue/20 border border-dj-blue shadow-md shadow-dj-blue/20 neon-box"
+                : "hover:bg-dj-blue/20 hover:border hover:border-dj-blue/50"
             )}
+          >
+            <motion.div
+              animate={{ rotate: mobileMenuOpen ? 180 : 0 }}
+              transition={{
+                duration: 0.3,
+                ease: "easeInOut",
+              }}
+              className="absolute"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-5 w-5" />
+              ) : (
+                <Menu className="h-5 w-5" />
+              )}
+            </motion.div>
           </Button>
         </div>
       </nav>
-
       {/* Mobile Navigation */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-black/90 backdrop-blur-md border-t border-dj-blue/20"
+            className="md:hidden fixed inset-0 top-[72px] bg-black/95 backdrop-blur-md z-50"
           >
-            <div className="container mx-auto px-4 py-4 space-y-2">
-              {sections.map((section) => (
-                <button
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 bg-gradient-to-b from-dj-blue/10 to-transparent"
+            />
+            <div className="container mx-auto px-4 py-8 space-y-4 relative">
+              {sections.map((section, index) => (
+                <motion.button
                   key={section.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  transition={{ duration: 0.3, delay: index * 0.1 }}
                   onClick={() => {
                     scrollToSection(section.ref);
                     setMobileMenuOpen(false);
                   }}
                   className={cn(
-                    "block w-full text-left px-4 py-3 rounded-md text-base font-medium transition-colors",
+                    "block w-full text-left px-6 py-4 rounded-lg text-lg font-medium transition-all duration-300",
                     activeSection === section.id
-                      ? "text-white bg-dj-blue/20 border-l-2 border-dj-blue"
-                      : "text-gray-400 hover:text-white hover:bg-dj-blue/10"
+                      ? "text-white bg-dj-blue/20 border border-dj-blue shadow-lg shadow-dj-blue/20 neon-box"
+                      : "text-gray-400 hover:text-white hover:bg-dj-blue/10 hover:border hover:border-dj-blue/50"
                   )}
                 >
                   {section.label}
-                </button>
+                </motion.button>
               ))}
             </div>
           </motion.div>
