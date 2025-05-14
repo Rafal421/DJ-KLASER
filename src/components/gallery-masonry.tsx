@@ -20,76 +20,80 @@ const galleryItems = [
   {
     id: 1,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258913/db540f69-ff96-443f-b5bd-84675f495219_h9rzxm.mov",
     description: "Professional DJ equipment setup for live events",
   },
   {
     id: 2,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257404/a51a223c-0b19-451d-9f27-1dc0e0c2a66a_mtmrae.mov",
     description: "Club atmosphere with dynamic lighting",
   },
   {
     id: 3,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/photo12_gu60iu.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257407/f0632bd7-c20a-426a-be5d-062cd448cc84_dhqggj.mov",
     description: "Crowd enjoying the music at a festival",
   },
   {
     id: 4,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/ME_pn08qp.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258913/30ed6ac2-ef30-4e10-a1d4-c1a0419bfaaf_sdntn8.mov",
     description: "Close-up of turntable in action",
   },
   {
     id: 5,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/ME2_fnzp27.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747256061/18707e3f-d10d-4c04-9460-e68880d67301_s8twxh.mov",
     description: "Professional DJ equipment setup for live events",
   },
   {
     id: 6,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257408/53296a38-148c-4131-91b6-d9751f4a4592_1_qemjin.mov",
     description: "Club atmosphere with dynamic lighting",
   },
   {
     id: 7,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257405/3058bc37-3236-4ad4-8620-6b171c498c30_rdm9h0.mov",
     description: "Crowd enjoying the music at a festival",
   },
   {
     id: 8,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257408/53296a38-148c-4131-91b6-d9751f4a4592_1_qemjin.mov",
     description: "Close-up of turntable in action",
   },
   {
     id: 9,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257407/f0632bd7-c20a-426a-be5d-062cd448cc84_dhqggj.mov",
     description: "Professional DJ equipment setup for live events",
   },
   {
     id: 10,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747256061/18707e3f-d10d-4c04-9460-e68880d67301_s8twxh.mov",
     description: "Club atmosphere with dynamic lighting",
   },
   {
     id: 11,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257404/a51a223c-0b19-451d-9f27-1dc0e0c2a66a_mtmrae.mov",
     description: "Crowd enjoying the music at a festival",
   },
   {
     id: 12,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257408/53296a38-148c-4131-91b6-d9751f4a4592_1_qemjin.mov",
     description: "Close-up of turntable in action",
   },
 ];
+
+const isVideo = (url: string) => {
+  return url.match(/\.(mp4|webm|ogg|mov)$/i) !== null;
+};
 
 export default function GalleryMasonry() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -160,16 +164,29 @@ export default function GalleryMasonry() {
               setSelectedImage(index);
               setDirection(0);
             }}
-            aria-label={`View image ${index + 1}: ${item.description}`}
+            aria-label={`View ${isVideo(item.image) ? "video" : "image"} ${
+              index + 1
+            }: ${item.description}`}
           >
-            <Image
-              src={item.image || "/placeholder.svg"}
-              alt={item.description}
-              fill
-              className="object-cover transition-transform duration-300 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              priority={index < 4}
-            />
+            {isVideo(item.image) ? (
+              <video
+                src={item.image}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                muted
+                loop
+                playsInline
+                autoPlay
+              />
+            ) : (
+              <Image
+                src={item.image || "/placeholder.svg"}
+                alt={item.description}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105"
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                priority={index < 4}
+              />
+            )}
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
               <div className="p-1 rounded-md bg-black/40 backdrop-blur-sm">
                 <Expand className="w-4 h-4 text-white" />
@@ -207,7 +224,7 @@ export default function GalleryMasonry() {
             onClick={closeLightbox}
             role="dialog"
             aria-modal="true"
-            aria-label="Image lightbox"
+            aria-label="Media lightbox"
           >
             {/* Controls */}
             <div className="fixed top-4 right-4 z-60 flex gap-2">
@@ -237,7 +254,7 @@ export default function GalleryMasonry() {
                 <ChevronLeft className="h-8 w-8 sm:h-6 sm:w-6" />
               </button>
 
-              {/* Image content */}
+              {/* Image/Video content */}
               <div className="relative w-full h-[85vh]">
                 <AnimatePresence initial={false} custom={direction}>
                   <motion.div
@@ -263,16 +280,29 @@ export default function GalleryMasonry() {
                     }}
                     className="absolute inset-0 flex items-center justify-center"
                   >
-                    <Image
-                      src={
-                        galleryItems[selectedImage].image || "/placeholder.svg"
-                      }
-                      alt={galleryItems[selectedImage].description}
-                      fill
-                      className="object-contain"
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 80vw"
-                    />
+                    {isVideo(galleryItems[selectedImage].image) ? (
+                      <video
+                        src={galleryItems[selectedImage].image}
+                        className="max-h-full max-w-full"
+                        controls
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                    ) : (
+                      <Image
+                        src={
+                          galleryItems[selectedImage].image ||
+                          "/placeholder.svg"
+                        }
+                        alt={galleryItems[selectedImage].description}
+                        fill
+                        className="object-contain"
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 80vw"
+                      />
+                    )}
 
                     {/* Info panel */}
                     <AnimatePresence>

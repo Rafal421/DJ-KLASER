@@ -245,7 +245,7 @@ export default function Home() {
             className="mb-12 relative w-full aspect-[21/9] rounded-xl overflow-hidden neon-box"
           >
             <Image
-              src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140882/591-1-2048x1365_xbzbj0.jpg"
+              src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg"
               alt="DJ Klaser Wide Portrait"
               fill
               className="object-cover"
