@@ -184,9 +184,12 @@ export default function Home() {
           <video
             src="https://res.cloudinary.com/dscvxyjvn/video/upload/v1747138841/Untitled_axgkb1.mp4"
             autoPlay
-            loop
+            playsInline
             muted
+            loop
+            preload="auto"
             className="object-cover w-full h-full absolute top-0 left-0"
+            poster="ścieżka_do_obrazka_tła"
           />
         </div>
         <motion.div
@@ -735,7 +738,7 @@ export default function Home() {
       <section
         ref={contactRef}
         id="contact"
-        className="py-24 section-transition-5"
+        className="py-24 scetion-transition-5"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -820,7 +823,7 @@ export default function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
-              className="bg-gradient-to-br from-blue-500/10 to-blue-900/20 rounded-xl border border-blue-500/20 p-8 neon-box"
+              className="bg-gradient-to-br from-blue-500/10 to-blue-900/20 rounded-xl border border-blue-500/20 p-8 neon-box "
             >
               <h3 className="text-xl font-bold mb-6 font-display">
                 Send a Message
