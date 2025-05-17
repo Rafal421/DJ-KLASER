@@ -17,103 +17,108 @@ import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 import Footer from "@/components/footer";
 
+// Helper function to determine if a file is a video
+const isVideo = (url: string) => {
+  return url.match(/\.(mp4|webm|ogg|mov)$/i) !== null;
+};
+
 // Gallery items with descriptions
 const galleryItems = [
   {
     id: 1,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Professional DJ equipment setup for live events",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747496797/Weronika-i-Patryk-593-1-scaled_cdbcsl.jpg",
+    description: "DJ Kalser oraz DJ Szpilka",
   },
   {
     id: 2,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258913/db540f69-ff96-443f-b5bd-84675f495219_h9rzxm.mov",
+    description: "Wesleny Taniec",
   },
   {
     id: 3,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747496795/SS-535_ozi3ax.jpg",
+    description: "Zabawy i atrakcje",
   },
   {
     id: 4,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747496797/1675576481777-scaled_njt181.jpg",
+    description: "Zabawy i atrakcje",
   },
   {
     id: 5,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Professional DJ equipment setup for live events",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747141319/SS-444-min-1-scaled_zyi96m.jpg",
+    description: "Weselna Impreza",
   },
   {
     id: 6,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747255914/SS-445-min-1-scaled_jsfw46.jpg",
+    description: "Dj Kalser oraz DJ Szpilka",
   },
   {
     id: 7,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747256055/SS-479-min-1-scaled_k5lgqh.jpg",
+    description: "Dj razem z Panna Młodą",
   },
   {
     id: 8,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747256055/1675576481837-scaled_lqmfzy.jpg",
+    description: "Zabawy i atrakcje",
   },
   {
     id: 9,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Professional DJ equipment setup for live events",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747496796/9N1A5737-1-scaled_vgc19m.jpg",
+    description: "Dj razem z Panna Młodą",
   },
   {
     id: 10,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747496795/SS-532_jumf0c.jpg",
+    description: "Zabawy i atrakcje",
   },
   {
     id: 11,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258913/30ed6ac2-ef30-4e10-a1d4-c1a0419bfaaf_sdntn8.mov",
+    description: "Impreza ",
   },
   {
     id: 12,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258911/0dd8de04-9b03-4f93-9c5b-213eb9a525df_hjaeke.mov",
+    description: "Impreza",
   },
   {
     id: 13,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Professional DJ equipment setup for live events",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257407/f0632bd7-c20a-426a-be5d-062cd448cc84_dhqggj.mov",
+    description: "Pierwszy taniec",
   },
   {
     id: 14,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257404/a51a223c-0b19-451d-9f27-1dc0e0c2a66a_mtmrae.mov",
+    description: "Impreza",
   },
   {
     id: 15,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747256061/18707e3f-d10d-4c04-9460-e68880d67301_s8twxh.mov",
+    description: "Wesele",
   },
   {
     id: 16,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747256058/9N1A5842-1-scaled_ciqxxj.jpg",
+    description: "Zdjecie z Panna Młodą",
   },
   {
     id: 17,
@@ -124,44 +129,44 @@ const galleryItems = [
   {
     id: 18,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138840/party_ing2lh.jpg",
+    description: "DJ Klaser oraz Dj Szpilka",
   },
   {
     id: 19,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/ME2_fnzp27.jpg",
+    description: "DJ Klaser oraz Dj Szpilka",
   },
   {
     id: 20,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/ME_pn08qp.jpg",
+    description: "DJ Klaser oraz Dj Szpilka",
   },
   {
     id: 21,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Professional DJ equipment setup for live events",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/photo12_gu60iu.jpg",
+    description: "Sprzęt DJ-a Kalsera",
   },
   {
     id: 22,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+    description: "Sprzęt DJ-a Kalsera",
   },
   {
     id: 23,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747138841/Untitled_axgkb1.mp4",
+    description: "Sprzęt DJ-a Kalsera",
   },
   {
     id: 24,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138838/equipment_rwqqao.jpg",
+    description: "Sprzęt DJ-a Kalsera",
   },
 ];
 
@@ -230,7 +235,7 @@ export default function GalleryPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black z-10" />
           <Image
-            src="/placeholder.svg?height=1080&width=1920&text=DJ+KALSER+GALLERY"
+            src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/photo12_gu60iu.jpg"
             alt="DJ Kalser Gallery"
             fill
             className="object-cover"
@@ -281,16 +286,29 @@ export default function GalleryPage() {
                   setSelectedImage(index);
                   setDirection(0);
                 }}
-                aria-label={`View image ${index + 1}: ${item.description}`}
+                aria-label={`View ${isVideo(item.image) ? "video" : "image"} ${
+                  index + 1
+                }: ${item.description}`}
               >
-                <Image
-                  src={item.image || "/placeholder.svg"}
-                  alt={item.description}
-                  fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  priority={index < 8}
-                />
+                {isVideo(item.image) ? (
+                  <video
+                    src={item.image}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    muted
+                    loop
+                    playsInline
+                    autoPlay
+                  />
+                ) : (
+                  <Image
+                    src={item.image || "/placeholder.svg"}
+                    alt={item.description}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    priority={index < 4}
+                  />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
                   <div className="p-1 rounded-md bg-black/40 backdrop-blur-sm">
                     <Expand className="w-4 h-4 text-white" />
@@ -344,7 +362,7 @@ export default function GalleryPage() {
                 <ChevronLeft className="h-8 w-8 sm:h-6 sm:w-6" />
               </button>
 
-              {/* Image content */}
+              {/* Image/Video content */}
               <div className="relative w-full h-[85vh]">
                 <AnimatePresence initial={false} custom={direction}>
                   <motion.div
@@ -370,16 +388,29 @@ export default function GalleryPage() {
                     }}
                     className="absolute inset-0 flex items-center justify-center"
                   >
-                    <Image
-                      src={
-                        galleryItems[selectedImage].image || "/placeholder.svg"
-                      }
-                      alt={galleryItems[selectedImage].description}
-                      fill
-                      className="object-contain"
-                      priority
-                      sizes="(max-width: 1024px) 100vw, 80vw"
-                    />
+                    {isVideo(galleryItems[selectedImage].image) ? (
+                      <video
+                        src={galleryItems[selectedImage].image}
+                        className="max-h-full max-w-full"
+                        controls
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                    ) : (
+                      <Image
+                        src={
+                          galleryItems[selectedImage].image ||
+                          "/placeholder.svg"
+                        }
+                        alt={galleryItems[selectedImage].description}
+                        fill
+                        className="object-contain"
+                        priority
+                        sizes="(max-width: 1024px) 100vw, 80vw"
+                      />
+                    )}
 
                     {/* Info panel */}
                     <AnimatePresence>

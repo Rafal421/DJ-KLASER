@@ -203,7 +203,7 @@ export default function Home() {
             <span className="gradient-text neon-blue">KLASER</span>
           </h1>
           <p className="text-lg sm:text-base md:text-2xl mb-8 max-w-2xl mx-auto text-gray-300 font-body">
-            Creating unforgettable musical experiences for every occasion
+            Tworzę niezapomniane muzyczne doświadczenia na każdą okazję
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -211,7 +211,7 @@ export default function Home() {
               className="bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
               onClick={() => scrollToSection(aboutRef)}
             >
-              Explore Website
+              Odkryj stronę
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
@@ -235,7 +235,7 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
-              About Me
+              O mnie
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
           </motion.div>
@@ -250,7 +250,7 @@ export default function Home() {
           >
             <Image
               src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg"
-              alt="DJ Klaser Wide Portrait"
+              alt="DJ Klaser szeroki portret"
               fill
               className="object-cover"
             />
@@ -265,7 +265,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-2xl font-bold mb-6 gradient-text font-display"
             >
-              The Sound Architect
+              Architekt Dźwięku
             </motion.h3>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -274,9 +274,8 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-gray-300 mb-4 font-body"
             >
-              With over a decade of experience in the industry, Ive had the
-              privilege of being part of hundreds of special celebrations, from
-              intimate weddings to large-scale events and festivals.
+              Od ponad dekady mam przyjemność uczestniczyć w setkach wyjątkowych
+              wydarzeń – od kameralnych wesel po duże eventy i festiwale.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -285,10 +284,10 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-gray-300 mb-4 font-body"
             >
-              My journey as a DJ began when I was just 16, mixing tracks for
-              friends and family gatherings. What started as a passion quickly
-              evolved into a profession as I honed my skills and expanded my
-              musical repertoire.
+              Moja przygoda z DJ-ką zaczęła się w wieku 16 lat, kiedy miksowałem
+              utwory na spotkaniach rodzinnych i imprezach znajomych. Z pasji
+              szybko przerodziło się to w zawód, a ja stale rozwijałem swoje
+              umiejętności i poszerzałem repertuar.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -297,11 +296,10 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-gray-300 mb-6 font-body"
             >
-              I believe that every event is unique, and I take pride in creating
-              customized playlists and atmospheres that reflect the personality
-              and preferences of my clients. My goal is simple: to create
-              unforgettable musical experiences that keep the dance floor packed
-              all night long.
+              Wierzę, że każde wydarzenie jest wyjątkowe, dlatego tworzę
+              spersonalizowane playlisty i atmosferę dopasowaną do oczekiwań
+              moich klientów. Moim celem jest jedno: niezapomniana zabawa i
+              pełny parkiet przez całą noc!
             </motion.p>
 
             <motion.div
@@ -316,8 +314,10 @@ export default function Home() {
                   <Disc className="h-6 w-6 text-blue-500" />
                 </div>
                 <div>
-                  <p className="font-medium text-white font-body">10+ Years</p>
-                  <p className="text-sm text-gray-400 font-body">Experience</p>
+                  <p className="font-medium text-white font-body">10+ lat</p>
+                  <p className="text-sm text-gray-400 font-body">
+                    Doświadczenia
+                  </p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -326,7 +326,7 @@ export default function Home() {
                 </div>
                 <div>
                   <p className="font-medium text-white font-body">500+</p>
-                  <p className="text-sm text-gray-400 font-body">Events</p>
+                  <p className="text-sm text-gray-400 font-body">Wydarzeń</p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -336,7 +336,7 @@ export default function Home() {
                 <div>
                   <p className="font-medium text-white font-body">1000+</p>
                   <p className="text-sm text-gray-400 font-body">
-                    Happy Clients
+                    Zadowolonych klientów
                   </p>
                 </div>
               </div>
@@ -356,11 +356,12 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
-              What Makes Me <span className="gradient-text">Different?</span>
+              Co mnie <span className="gradient-text">wyróżnia?</span>
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
             <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
-              I offer music and lighting services with professional MC hosting
+              Oferuję muzykę i oświetlenie wraz z profesjonalnym prowadzeniem
+              imprez.
             </p>
           </motion.div>
 
@@ -377,10 +378,10 @@ export default function Home() {
                 <Headset className="h-8 w-8 text-blue-500" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-center font-display">
-                HIGH QUALITY EQUIPMENT
+                SPRZĘT NAJWYŻSZEJ JAKOŚCI
               </h3>
               <p className="text-gray-300 text-center font-body">
-                My sound system and lighting are of the highest quality.
+                Systemy nagłośnienia i oświetlenia na najwyższym poziomie.
               </p>
             </motion.div>
 
@@ -396,10 +397,11 @@ export default function Home() {
                 <Award className="h-8 w-8 text-blue-500" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-center font-display">
-                PROFESSIONALISM
+                PROFESJONALIZM
               </h3>
               <p className="text-gray-300 text-center font-body">
-                I make every effort to ensure your event runs smoothly.
+                Dbam o każdy szczegół, by Twoje wydarzenie przebiegło
+                perfekcyjnie.
               </p>
             </motion.div>
 
@@ -415,11 +417,11 @@ export default function Home() {
                 <UserCheck className="h-8 w-8 text-blue-500" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-center font-display">
-                INDIVIDUAL APPROACH
+                INDYWIDUALNE PODEJŚCIE
               </h3>
               <p className="text-gray-300 text-center font-body">
-                I talk with you to understand your expectations and adapt to
-                them.
+                Rozmawiam z Tobą, by poznać Twoje oczekiwania i się do nich
+                dostosować.
               </p>
             </motion.div>
 
@@ -435,10 +437,10 @@ export default function Home() {
                 <Star className="h-8 w-8 text-blue-500" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-center font-display">
-                RICH EXPERIENCE
+                BOGATE DOŚWIADCZENIE
               </h3>
               <p className="text-gray-300 text-center font-body">
-                With years of experience, Ive earned the trust of many clients.
+                Lata praktyki i zaufanie wielu klientów.
               </p>
             </motion.div>
           </div>
@@ -460,11 +462,12 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
-              Services
+              Usługi
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
             <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
-              Professional DJ services tailored to your specific event needs
+              Profesjonalne usługi DJ-skie dostosowane do potrzeb Twojego
+              wydarzenia
             </p>
           </motion.div>
 
@@ -482,20 +485,18 @@ export default function Home() {
                 <div className="mb-6">
                   <Calendar className="h-8 w-8 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 font-display">
-                  Wedding Events
-                </h3>
+                <h3 className="text-xl font-bold mb-3 font-display">Wesela</h3>
                 <p className="text-gray-300 mb-6 font-body">
-                  Create magical moments on your special day with our
-                  professional wedding DJ services. From romantic first dances
-                  to energetic party sets.
+                  Stwórz magiczne chwile w dniu swojego ślubu dzięki naszym
+                  profesjonalnym usługom DJ-skim. Od romantycznych pierwszych
+                  tańców po energetyczne sety taneczne.
                 </p>
                 <ul className="space-y-2">
                   {[
-                    "Ceremony music coordination",
-                    "Cocktail hour and dinner background music",
-                    "Reception and dance floor entertainment",
-                    "Custom playlists tailored to your preferences",
+                    "Koordynacja muzyki podczas ceremonii",
+                    "Muzyka w tle podczas przyjęcia i kolacji",
+                    "Rozrywka na przyjęciu weselnym i parkiecie",
+                    "Spersonalizowane playlisty dopasowane do Twoich preferencji",
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
@@ -517,7 +518,7 @@ export default function Home() {
               >
                 <Image
                   src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747141319/SS-444-min-1-scaled_zyi96m.jpg"
-                  alt="Wedding DJ Service"
+                  alt="Usługa DJ na wesele"
                   fill
                   className="object-cover"
                 />
@@ -535,18 +536,19 @@ export default function Home() {
                   <Users className="h-8 w-8 text-blue-500" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 font-display">
-                  Private Parties
+                  Imprezy Prywatne
                 </h3>
                 <p className="text-gray-300 mb-6 font-body">
-                  Make your private event unforgettable with customized music
-                  that matches the mood and keeps your guests entertained.
+                  Spraw, by Twoje prywatne wydarzenie było niezapomniane dzięki
+                  spersonalizowanej muzyce, która odpowiada nastrojowi i bawi
+                  Twoich gości.
                 </p>
                 <ul className="space-y-2">
                   {[
-                    "Birthday parties and anniversaries",
-                    "Corporate events and product launches",
-                    "Holiday parties and celebrations",
-                    "Custom playlists and song requests",
+                    "Imprezy urodzinowe i rocznice",
+                    "Wydarzenia firmowe i premiery produktów",
+                    "Imprezy świąteczne i okolicznościowe",
+                    "Spersonalizowane playlisty i życzenia utworów",
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
@@ -571,7 +573,7 @@ export default function Home() {
               >
                 <Image
                   src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138840/party_ing2lh.jpg"
-                  alt="Corporate Event"
+                  alt="Wydarzenie firmowe"
                   fill
                   className="object-cover"
                 />
@@ -589,19 +591,19 @@ export default function Home() {
                   <Music className="h-8 w-8 text-blue-500" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 font-display">
-                  Club Events
+                  Wydarzenia Klubowe
                 </h3>
                 <p className="text-gray-300 mb-6 font-body">
-                  Elevate your club night with high-energy sets that keep the
-                  crowd moving. Specializing in house, EDM, hip-hop, and open
-                  format.
+                  Podnieś poziom swojej imprezy klubowej dzięki energetycznym
+                  setom, które porwą tłumy do tańca. Specjalizuję się w muzyce
+                  house, EDM, hip-hop i open format.
                 </p>
                 <ul className="space-y-2">
                   {[
-                    "High-energy DJ sets",
-                    "State-of-the-art sound and lighting",
-                    "Crowd reading and interaction",
-                    "Seamless mixing and transitions",
+                    "Energetyczne sety DJ-skie",
+                    "Najnowocześniejsze nagłośnienie i oświetlenie",
+                    "Interakcja z tłumem i odczytywanie jego potrzeb",
+                    "Płynne przejścia i miksowanie",
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
@@ -623,7 +625,7 @@ export default function Home() {
               >
                 <Image
                   src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138838/equipment_rwqqao.jpg"
-                  alt="Club Event"
+                  alt="Wydarzenie klubowe"
                   fill
                   className="object-cover"
                 />
@@ -640,32 +642,32 @@ export default function Home() {
               viewport={{ once: true }}
               className="text-2xl font-bold mb-8 text-center font-display font-Audiowide"
             >
-              Premium Equipment
+              Sprzęt premium
             </motion.h3>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               {[
                 {
-                  title: "Sound Systems",
+                  title: "Nagłośnienie",
                   icon: <Headphones className="h-6 w-6 text-blue-500" />,
                   description:
-                    "Top-of-the-line speakers and audio equipment for crystal clear sound at any venue size.",
+                    "Najwyższej klasy głośniki i sprzęt audio zapewniający krystalicznie czysty dźwięk w każdym miejscu.",
                   color: "from-blue-500/20 to-blue-900/30",
                   border: "border-blue-500/30",
                 },
                 {
-                  title: "Lighting Effects",
+                  title: "Oświetlenie",
                   icon: <Disc className="h-6 w-6 text-blue-500" />,
                   description:
-                    "Dynamic lighting setups including moving heads, lasers, and atmospheric effects.",
+                    "Dynamiczne efekty świetlne, w tym ruchome głowy, lasery i efekty atmosferyczne.",
                   color: "from-blue-500/20 to-blue-900/30",
                   border: "border-blue-500/30",
                 },
                 {
-                  title: "DJ Gear",
+                  title: "Sprzęt DJ-ski",
                   icon: <Music className="h-6 w-6 text-blue-500" />,
                   description:
-                    "Professional controllers, mixers, and software for seamless mixing and performance.",
+                    "Profesjonalne kontrolery, miksery i oprogramowanie do płynnego miksowania i występów.",
                   color: "from-blue-500/20 to-blue-900/30",
                   border: "border-blue-500/30",
                 },
@@ -709,11 +711,11 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
-              Gallery
+              Galeria
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
             <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
-              Moments captured from unforgettable events and performances
+              Chwile uchwycone z niezapomnianych wydarzeń i występów
             </p>
           </motion.div>
 
@@ -726,7 +728,7 @@ export default function Home() {
               asChild
             >
               <Link href="/gallery">
-                View Full Gallery
+                Zobacz pełną galerię
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -749,11 +751,12 @@ export default function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4 font-display font-Audiowide">
-              Contact
+              Kontakt
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
             <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
-              Get in touch to book your event or inquire about services
+              Skontaktuj się, aby zarezerwować swoje wydarzenie lub zapytać o
+              usługi
             </p>
           </motion.div>
 
@@ -766,12 +769,12 @@ export default function Home() {
               viewport={{ once: true }}
             >
               <h3 className="text-2xl font-bold mb-6 font-display">
-                Get In Touch
+                Skontaktuj się
               </h3>
               <p className="text-gray-300 mb-8 font-body">
-                Have questions about my services or want to book for your event?
-                Fill out the form or contact me directly using the information
-                below.
+                Masz pytania dotyczące moich usług lub chcesz zarezerwować
+                termin na swoje wydarzenie? Wypełnij formularz lub skontaktuj
+                się ze mną bezpośrednio, korzystając z poniższych danych.
               </p>
 
               <div className="space-y-6">
@@ -781,9 +784,9 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-medium text-white font-display">
-                      Phone
+                      Telefon
                     </h4>
-                    <p className="text-gray-300 font-body">+1 (123) 456-7890</p>
+                    <p className="text-gray-300 font-body">+48 515 255 477</p>
                   </div>
                 </div>
 
@@ -795,7 +798,7 @@ export default function Home() {
                     <h4 className="font-medium text-white font-display">
                       Email
                     </h4>
-                    <p className="text-gray-300 font-body">info@djkalser.com</p>
+                    <p className="text-gray-300 font-body">hak73@op.pl</p>
                   </div>
                 </div>
 
@@ -805,12 +808,12 @@ export default function Home() {
                   </div>
                   <div>
                     <h4 className="font-medium text-white font-display">
-                      Based In
+                      Lokalizacja
                     </h4>
                     <p className="text-gray-300 font-body">
-                      Los Angeles, CA
+                      Okolice Ośwecimia
                       <br />
-                      Available for worldwide bookings
+                      Wszystko do dogadania
                     </p>
                   </div>
                 </div>
@@ -826,7 +829,7 @@ export default function Home() {
               className="bg-gradient-to-br from-blue-500/10 to-blue-900/20 rounded-xl border border-blue-500/20 p-8 neon-box "
             >
               <h3 className="text-xl font-bold mb-6 font-display">
-                Send a Message
+                Wyślij wiadomość
               </h3>
 
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -835,13 +838,13 @@ export default function Home() {
                     htmlFor="fullName"
                     className="text-sm font-medium text-gray-300 font-body"
                   >
-                    Full Name
+                    Pełne imię i nazwisko
                   </label>
                   <Input
                     id="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
-                    placeholder="First and Last Name"
+                    placeholder="Imię i nazwisko"
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     required
                   />
@@ -857,13 +860,13 @@ export default function Home() {
                     htmlFor="subject"
                     className="text-sm font-medium text-gray-300 font-body"
                   >
-                    Subject
+                    Temat
                   </label>
                   <Input
                     id="subject"
                     value={formData.subject}
                     onChange={handleChange}
-                    placeholder="What's this about?"
+                    placeholder="O co chodzi?"
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     required
                   />
@@ -879,14 +882,14 @@ export default function Home() {
                     htmlFor="email"
                     className="text-sm font-medium text-gray-300 font-body"
                   >
-                    Email Address
+                    Adres e-mail
                   </label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Your email"
+                    placeholder="Twój e-mail"
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     required
                   />
@@ -902,14 +905,14 @@ export default function Home() {
                     htmlFor="phone"
                     className="text-sm font-medium text-gray-300 font-body"
                   >
-                    Phone Number
+                    Numer telefonu
                   </label>
                   <Input
                     id="phone"
                     type="tel"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Your phone number"
+                    placeholder="Twój numer telefonu"
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     required
                   />
@@ -925,13 +928,13 @@ export default function Home() {
                     htmlFor="message"
                     className="text-sm font-medium text-gray-300 font-body"
                   >
-                    Message
+                    Wiadomość
                   </label>
                   <Textarea
                     id="message"
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell me about your event..."
+                    placeholder="Opowiedz mi o swoim wydarzeniu..."
                     rows={4}
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     required
@@ -954,25 +957,27 @@ export default function Home() {
                   {formStatus === "loading" ? (
                     <>
                       <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                      Sending...
+                      Wysyłanie...
                     </>
                   ) : (
                     <>
                       <Send className="h-4 w-4 mr-2" />
-                      Send Message
+                      Wyślij wiadomość
                     </>
                   )}
                 </Button>
 
                 {formStatus === "success" && (
                   <p className="text-green-500 text-sm text-center">
-                    Message sent successfully! We&apos;ll get back to you soon.
+                    Wiadomość wysłana pomyślnie! Skontaktujemy się z Tobą
+                    wkrótce.
                   </p>
                 )}
 
                 {formStatus === "error" && (
                   <p className="text-red-500 text-sm text-center">
-                    Failed to send message. Please check the form and try again.
+                    Nie udało się wysłać wiadomości. Sprawdź formularz i spróbuj
+                    ponownie.
                   </p>
                 )}
               </form>

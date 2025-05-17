@@ -73,7 +73,11 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
                   : "text-gray-400 hover:text-white"
               )}
             >
-              {section.label}
+              {section.id === "home" && "Strona główna"}
+              {section.id === "about" && "O mnie"}
+              {section.id === "services" && "Usługi"}
+              {section.id === "gallery" && "Galeria"}
+              {section.id === "contact" && "Kontakt"}
               {activeSection === section.id && (
                 <motion.div
                   layoutId="activeSection"
@@ -152,7 +156,11 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
                       : "text-gray-400 hover:text-white hover:bg-dj-blue/10 hover:border hover:border-dj-blue/50"
                   )}
                 >
-                  {section.label}
+                  {section.id === "home" && "Strona główna"}
+                  {section.id === "about" && "O mnie"}
+                  {section.id === "services" && "Usługi"}
+                  {section.id === "gallery" && "Galeria"}
+                  {section.id === "contact" && "Kontakt"}
                 </motion.button>
               ))}
             </div>
