@@ -21,73 +21,73 @@ const galleryItems = [
     id: 1,
     image:
       "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258913/db540f69-ff96-443f-b5bd-84675f495219_h9rzxm.mov",
-    description: "Professional DJ equipment setup for live events",
+    description: "Pierwszy Taniec",
   },
   {
     id: 2,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257404/a51a223c-0b19-451d-9f27-1dc0e0c2a66a_mtmrae.mov",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747502320/f0632bd7-c20a-426a-be5d-062cd448cc84_mnhi47.mov",
+    description: "Pierwszy Taniec",
   },
   {
     id: 3,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257407/f0632bd7-c20a-426a-be5d-062cd448cc84_dhqggj.mov",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257404/a51a223c-0b19-451d-9f27-1dc0e0c2a66a_mtmrae.mov",
+    description: "Imperaza",
   },
   {
     id: 4,
     image:
       "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258913/30ed6ac2-ef30-4e10-a1d4-c1a0419bfaaf_sdntn8.mov",
-    description: "Close-up of turntable in action",
+    description: "Impreza",
   },
   {
     id: 5,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747256061/18707e3f-d10d-4c04-9460-e68880d67301_s8twxh.mov",
-    description: "Professional DJ equipment setup for live events",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257408/53296a38-148c-4131-91b6-d9751f4a4592_1_qemjin.mov",
+    description: "Impreza",
   },
   {
     id: 6,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257408/53296a38-148c-4131-91b6-d9751f4a4592_1_qemjin.mov",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257404/a51a223c-0b19-451d-9f27-1dc0e0c2a66a_mtmrae.mov",
+    description: "Impreza",
   },
   {
     id: 7,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257405/3058bc37-3236-4ad4-8620-6b171c498c30_rdm9h0.mov",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747258911/0dd8de04-9b03-4f93-9c5b-213eb9a525df_hjaeke.mov",
+    description: "Imoreza",
   },
   {
     id: 8,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257408/53296a38-148c-4131-91b6-d9751f4a4592_1_qemjin.mov",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747256061/18707e3f-d10d-4c04-9460-e68880d67301_s8twxh.mov",
+    description: "Wesele",
   },
   {
     id: 9,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257407/f0632bd7-c20a-426a-be5d-062cd448cc84_dhqggj.mov",
-    description: "Professional DJ equipment setup for live events",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257405/3058bc37-3236-4ad4-8620-6b171c498c30_rdm9h0.mov",
+    description: "Imopreza",
   },
   {
     id: 10,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747256061/18707e3f-d10d-4c04-9460-e68880d67301_s8twxh.mov",
-    description: "Club atmosphere with dynamic lighting",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747256057/1675576481777-scaled_wteti9.jpg",
+    description: "Zabawa na weselu",
   },
   {
     id: 11,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257404/a51a223c-0b19-451d-9f27-1dc0e0c2a66a_mtmrae.mov",
-    description: "Crowd enjoying the music at a festival",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747255913/Weronika-i-Patryk-593-1-scaled_peel85.jpg",
+    description: "DJ Klaser i DJ Szpilka",
   },
   {
     id: 12,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257408/53296a38-148c-4131-91b6-d9751f4a4592_1_qemjin.mov",
-    description: "Close-up of turntable in action",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747255957/SS-535_umvfxk.jpg",
+    description: "Zabawa na weselu",
   },
 ];
 

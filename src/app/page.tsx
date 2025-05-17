@@ -34,14 +34,18 @@ import { z } from "zod";
 
 // Form validation schema
 const formSchema = z.object({
-  fullName: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  phone: z.string().min(9, "Phone number must be at least 9 digits"),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-  subject: z.string().min(3, "Subject must be at least 3 characters"),
+  fullName: z.string().min(2, "Podaj imię i nazwisko"),
+  email: z.string().email("Nieprawidłowy adres e-mail"),
+  phone: z.string().optional(),
+  message: z.string().min(10, "Wiadomość musi mieć min. 10 znaków"),
 });
 
-type FormData = z.infer<typeof formSchema>;
+type FormData = {
+  fullName: string;
+  email: string;
+  phone?: string;
+  message: string;
+};
 
 export default function Home() {
   const homeRef = useRef<HTMLDivElement | null>(null);
@@ -61,7 +65,6 @@ export default function Home() {
     email: "",
     phone: "",
     message: "",
-    subject: "",
   });
 
   const sections: {
@@ -157,7 +160,6 @@ export default function Home() {
         email: "",
         phone: "",
         message: "",
-        subject: "",
       });
       setFormErrors({});
 
@@ -832,97 +834,59 @@ export default function Home() {
                 Wyślij wiadomość
               </h3>
 
+              {/* --- FORMULARZ --- */}
               <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="space-y-2">
-                  <label
-                    htmlFor="fullName"
-                    className="text-sm font-medium text-gray-300 font-body"
-                  >
-                    Pełne imię i nazwisko
-                  </label>
-                  <Input
-                    id="fullName"
-                    value={formData.fullName}
-                    onChange={handleChange}
-                    placeholder="Imię i nazwisko"
-                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
-                    required
-                  />
-                  {formErrors.fullName && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.fullName}
-                    </p>
-                  )}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="fullName"
+                      className="text-sm font-medium text-gray-300 font-body"
+                    >
+                      Imię i nazwisko
+                    </label>
+                    <Input
+                      id="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      placeholder="Imię i nazwisko"
+                      className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="email"
+                      className="text-sm font-medium text-gray-300 font-body"
+                    >
+                      Adres e-mail
+                    </label>
+                    <Input
+                      id="email"
+                      type="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      placeholder="Twój e-mail"
+                      className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                      required
+                    />
+                  </div>
+                  <div className="space-y-2 md:col-span-2">
+                    <label
+                      htmlFor="phone"
+                      className="text-sm font-medium text-gray-300 font-body"
+                    >
+                      Numer telefonu
+                    </label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Twój numer telefonu (opcjonalnie)"
+                      className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
+                    />
+                  </div>
                 </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="subject"
-                    className="text-sm font-medium text-gray-300 font-body"
-                  >
-                    Temat
-                  </label>
-                  <Input
-                    id="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    placeholder="O co chodzi?"
-                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
-                    required
-                  />
-                  {formErrors.subject && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.subject}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="email"
-                    className="text-sm font-medium text-gray-300 font-body"
-                  >
-                    Adres e-mail
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Twój e-mail"
-                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
-                    required
-                  />
-                  {formErrors.email && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.email}
-                    </p>
-                  )}
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="phone"
-                    className="text-sm font-medium text-gray-300 font-body"
-                  >
-                    Numer telefonu
-                  </label>
-                  <Input
-                    id="phone"
-                    type="tel"
-                    value={formData.phone}
-                    onChange={handleChange}
-                    placeholder="Twój numer telefonu"
-                    className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
-                    required
-                  />
-                  {formErrors.phone && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.phone}
-                    </p>
-                  )}
-                </div>
-
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
@@ -939,20 +903,11 @@ export default function Home() {
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     required
                   />
-                  {formErrors.message && (
-                    <p className="text-red-500 text-sm mt-1">
-                      {formErrors.message}
-                    </p>
-                  )}
                 </div>
-
                 <Button
                   type="submit"
                   className="w-full bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
-                  disabled={
-                    formStatus === "loading" ||
-                    Object.keys(formErrors).length > 0
-                  }
+                  disabled={formStatus === "loading"}
                 >
                   {formStatus === "loading" ? (
                     <>
@@ -966,14 +921,12 @@ export default function Home() {
                     </>
                   )}
                 </Button>
-
                 {formStatus === "success" && (
                   <p className="text-green-500 text-sm text-center">
                     Wiadomość wysłana pomyślnie! Skontaktujemy się z Tobą
                     wkrótce.
                   </p>
                 )}
-
                 {formStatus === "error" && (
                   <p className="text-red-500 text-sm text-center">
                     Nie udało się wysłać wiadomości. Sprawdź formularz i spróbuj

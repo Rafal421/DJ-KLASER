@@ -3,9 +3,9 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { fullName, email, phone, message, subject } = await req.json();
+    const { fullName, email, phone, message } = await req.json();
 
-    // Validate that all required SMTP environment variables are present
+    // Sprawdź wymagane zmienne środowiskowe SMTP
     const requiredEnvVars = [
       "SMTP_HOST",
       "SMTP_PORT",
@@ -16,68 +16,66 @@ export async function POST(req: Request) {
     ];
     for (const envVar of requiredEnvVars) {
       if (!process.env[envVar]) {
-        throw new Error(`Missing required environment variable: ${envVar}`);
+        throw new Error(`Brak wymaganej zmiennej środowiskowej: ${envVar}`);
       }
     }
 
-    // Create a transporter using SMTP with timeout settings
+    // Utwórz transporter SMTP z ustawieniami timeout
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
-      secure: process.env.SMTP_PORT === "465", // true for 465, false for other ports
+      secure: process.env.SMTP_PORT === "465", // true dla 465, false dla innych portów
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
       },
-      // Add timeout settings
-      connectionTimeout: 10000, // 10 seconds
-      greetingTimeout: 10000, // 10 seconds
-      socketTimeout: 10000, // 10 seconds
+      connectionTimeout: 10000,
+      greetingTimeout: 10000,
+      socketTimeout: 10000,
     });
 
-    // Verify SMTP connection
+    // Weryfikacja połączenia SMTP
     try {
       await transporter.verify();
     } catch (verifyError) {
-      console.error("SMTP Verification failed:", verifyError);
+      console.error("Błąd weryfikacji SMTP:", verifyError);
       return NextResponse.json(
-        { error: "Failed to connect to email server" },
+        { error: "Nie udało się połączyć z serwerem poczty e-mail." },
         { status: 500 }
       );
     }
 
-    // Email content
+    // Treść e-maila
     const mailOptions = {
       from: process.env.SMTP_FROM_EMAIL,
       to: process.env.SMTP_TO_EMAIL,
-      subject: `[Website Contact] ${subject} - from ${fullName}`,
+      subject: `[Formularz kontaktowy ze strony] - od ${fullName}`,
       html: `
-        <h2>New Contact Form Submission</h2>
-        <p><strong>Subject:</strong> ${subject}</p>
-        <p><strong>Name:</strong> ${fullName}</p>
+        <h2>Nowa wiadomość z formularza kontaktowego</h2>
+        <p><strong>Imię i nazwisko:</strong> ${fullName}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Phone:</strong> ${phone}</p>
-        <p><strong>Message:</strong></p>
+        <p><strong>Telefon:</strong> ${phone}</p>
+        <p><strong>Wiadomość:</strong></p>
         <p>${message}</p>
       `,
       replyTo: email,
     };
 
-    // Send email
+    // Wyślij e-mail
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      { message: "Wiadomość została wysłana pomyślnie." },
       { status: 200 }
     );
   } catch (error) {
-    console.error("Error sending email:", error);
+    console.error("Błąd podczas wysyłania e-maila:", error);
 
-    // Return more specific error messages
+    // Bardziej szczegółowy komunikat o błędzie
     const errorMessage =
       error instanceof Error
         ? error.message
-        : "An unknown error occurred while sending the email";
+        : "Wystąpił nieznany błąd podczas wysyłania wiadomości.";
 
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }

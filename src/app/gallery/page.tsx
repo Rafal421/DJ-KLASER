@@ -99,7 +99,7 @@ const galleryItems = [
   {
     id: 13,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747257407/f0632bd7-c20a-426a-be5d-062cd448cc84_dhqggj.mov",
+      "https://res.cloudinary.com/dscvxyjvn/video/upload/v1747502320/f0632bd7-c20a-426a-be5d-062cd448cc84_mnhi47.mov",
     description: "Pierwszy taniec",
   },
   {
@@ -235,11 +235,11 @@ export default function GalleryPage() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black z-10" />
           <Image
-            src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138839/photo12_gu60iu.jpg"
+            src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138838/equipment_rwqqao.jpg"
             alt="DJ Kalser Gallery"
             fill
             className="object-cover"
-            priority
+            priority={true}
           />
         </div>
         <div className="relative z-10 container mx-auto px-4 text-center">
@@ -249,7 +249,7 @@ export default function GalleryPage() {
             transition={{ duration: 0.8 }}
             className="text-6xl md:text-8xl font-bold mb-4 tracking-tight font-display"
           >
-            <span className="gradient-text neon-blue">GALLERY</span>
+            <span className="gradient-text neon-blue">GALERIA</span>
           </motion.h1>
         </div>
         <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-black to-transparent"></div>
@@ -264,7 +264,7 @@ export default function GalleryPage() {
           >
             <Link href="/">
               <ArrowLeft className="h-4 w-4 mr-2" />
-              Back to Home
+              Powrót do strony głównej
             </Link>
           </Button>
         </div>
@@ -306,7 +306,13 @@ export default function GalleryPage() {
                     fill
                     className="object-cover transition-transform duration-300 group-hover:scale-105"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    priority={index < 4}
+                    priority={
+                      [
+                        "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747141319/SS-444-min-1-scaled_zyi96m.jpg",
+                        "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747496796/9N1A5737-1-scaled_vgc19m.jpg",
+                        "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+                      ].includes(item.image) || index < 4
+                    }
                   />
                 )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-2">
@@ -407,7 +413,7 @@ export default function GalleryPage() {
                         alt={galleryItems[selectedImage].description}
                         fill
                         className="object-contain"
-                        priority
+                        priority={true}
                         sizes="(max-width: 1024px) 100vw, 80vw"
                       />
                     )}
