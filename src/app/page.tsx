@@ -187,7 +187,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black z-10" />
           <video
-            src="https://res.cloudinary.com/dscvxyjvn/video/upload/v1747138841/Untitled_axgkb1.mp4"
+            src="https://res.cloudinary.com/dscvxyjvn/video/upload/q_auto,f_auto/v1747138841/Untitled_axgkb1.mp4"
             autoPlay
             playsInline
             muted

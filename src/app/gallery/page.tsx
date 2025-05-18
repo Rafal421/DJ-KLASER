@@ -170,7 +170,11 @@ const galleryItems = [
   },
 ].map((item) => ({
   ...item,
-  image: item.image.replace(/\/upload\//, "/upload/w_auto,q_auto,f_auto/"),
+  image: item.image
+    ? item.image.match(/\.(mp4|webm|ogg|mov)$/i)
+      ? item.image.replace(/\/upload\//, "/upload/q_auto,f_auto/")
+      : item.image.replace(/\/upload\//, "/upload/w_auto,q_auto,f_auto/")
+    : undefined,
 }));
 
 export default function GalleryPage() {
@@ -289,11 +293,11 @@ export default function GalleryPage() {
                   setSelectedImage(index);
                   setDirection(0);
                 }}
-                aria-label={`View ${isVideo(item.image) ? "video" : "image"} ${
-                  index + 1
-                }: ${item.description}`}
+                aria-label={`View ${
+                  isVideo(item.image || "") ? "video" : "image"
+                } ${index + 1}: ${item.description}`}
               >
-                {isVideo(item.image) ? (
+                {isVideo(item.image || "") ? (
                   <video
                     src={item.image}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -314,7 +318,7 @@ export default function GalleryPage() {
                         "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747141319/SS-444-min-1-scaled_zyi96m.jpg",
                         "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747496796/9N1A5737-1-scaled_vgc19m.jpg",
                         "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
-                      ].includes(item.image) || index < 4
+                      ].includes(item.image || "") || index < 4
                     }
                   />
                 )}
@@ -397,7 +401,7 @@ export default function GalleryPage() {
                     }}
                     className="absolute inset-0 flex items-center justify-center"
                   >
-                    {isVideo(galleryItems[selectedImage].image) ? (
+                    {isVideo(galleryItems[selectedImage].image || "") ? (
                       <video
                         src={galleryItems[selectedImage].image}
                         className="max-h-full max-w-full"

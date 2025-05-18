@@ -91,7 +91,11 @@ const galleryItems = [
   },
 ].map((item) => ({
   ...item,
-  image: item.image.replace(/\/upload\//, "/upload/w_auto,q_auto,f_auto/"),
+  image: item.image
+    ? item.image.match(/\.(mp4|webm|ogg|mov)$/i)
+      ? item.image.replace(/\/upload\//, "/upload/q_auto,f_auto/")
+      : item.image.replace(/\/upload\//, "/upload/w_auto,q_auto,f_auto/")
+    : undefined,
 }));
 
 const isVideo = (url: string) => {
@@ -167,11 +171,11 @@ export default function GalleryMasonry() {
               setSelectedImage(index);
               setDirection(0);
             }}
-            aria-label={`View ${isVideo(item.image) ? "video" : "image"} ${
-              index + 1
-            }: ${item.description}`}
+            aria-label={`View ${
+              isVideo(item.image || "") ? "video" : "image"
+            } ${index + 1}: ${item.description}`}
           >
-            {isVideo(item.image) ? (
+            {isVideo(item.image || "") ? (
               <video
                 src={item.image}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -283,7 +287,7 @@ export default function GalleryMasonry() {
                     }}
                     className="absolute inset-0 flex items-center justify-center"
                   >
-                    {isVideo(galleryItems[selectedImage].image) ? (
+                    {isVideo(galleryItems[selectedImage].image || "") ? (
                       <video
                         src={galleryItems[selectedImage].image}
                         className="max-h-full max-w-full"
