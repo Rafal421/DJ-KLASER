@@ -3,9 +3,33 @@ import nodemailer from "nodemailer";
 
 export async function POST(req: Request) {
   try {
-    const { fullName, email, phone, message } = await req.json();
+    const { fullName, email, phone, message, recaptchaToken } =
+      await req.json();
 
-    // Sprawdź wymagane zmienne środowiskowe SMTP
+    if (!recaptchaToken) {
+      return NextResponse.json(
+        { error: "Brak tokenu reCAPTCHA." },
+        { status: 400 }
+      );
+    }
+
+    const recaptchaRes = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: `secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+      }
+    );
+
+    const recaptchaData = await recaptchaRes.json();
+    if (!recaptchaData.success) {
+      return NextResponse.json(
+        { error: "Weryfikacja reCAPTCHA nie powiodła się." },
+        { status: 400 }
+      );
+    }
+
     const requiredEnvVars = [
       "SMTP_HOST",
       "SMTP_PORT",
@@ -20,11 +44,10 @@ export async function POST(req: Request) {
       }
     }
 
-    // Utwórz transporter SMTP z ustawieniami timeout
     const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
       port: Number(process.env.SMTP_PORT),
-      secure: process.env.SMTP_PORT === "465", // true dla 465, false dla innych portów
+      secure: process.env.SMTP_PORT === "465",
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
@@ -34,49 +57,69 @@ export async function POST(req: Request) {
       socketTimeout: 10000,
     });
 
-    // Weryfikacja połączenia SMTP
     try {
       await transporter.verify();
-    } catch (verifyError) {
-      console.error("Błąd weryfikacji SMTP:", verifyError);
+    } catch (verifyError: unknown) {
+      if (verifyError instanceof Error) {
+        console.error("Błąd weryfikacji SMTP:", verifyError.message);
+      } else {
+        console.error("Błąd weryfikacji SMTP:", verifyError);
+      }
       return NextResponse.json(
         { error: "Nie udało się połączyć z serwerem poczty e-mail." },
         { status: 500 }
       );
     }
 
-    // Treść e-maila
+    function escapeHtml(input: string) {
+      return input
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    const sanitizedFullName = escapeHtml(fullName);
+    const sanitizedEmail = escapeHtml(email);
+    const sanitizedPhone = escapeHtml(phone);
+    const sanitizedMessage = escapeHtml(message);
+
     const mailOptions = {
       from: process.env.SMTP_FROM_EMAIL,
       to: process.env.SMTP_TO_EMAIL,
-      subject: `[Formularz kontaktowy ze strony] - od ${fullName}`,
+      subject: `[Formularz kontaktowy] - od ${sanitizedFullName}`,
       html: `
         <h2>Nowa wiadomość z formularza kontaktowego</h2>
-        <p><strong>Imię i nazwisko:</strong> ${fullName}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Telefon:</strong> ${phone}</p>
+        <p><strong>Imię i nazwisko:</strong> ${sanitizedFullName}</p>
+        <p><strong>Email:</strong> ${sanitizedEmail}</p>
+        <p><strong>Telefon:</strong> ${sanitizedPhone}</p>
         <p><strong>Wiadomość:</strong></p>
-        <p>${message}</p>
+        <p>${sanitizedMessage.replace(/\n/g, "<br>")}</p>
       `,
-      replyTo: email,
+      replyTo: sanitizedEmail,
     };
 
-    // Wyślij e-mail
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json(
       { message: "Wiadomość została wysłana pomyślnie." },
       { status: 200 }
     );
-  } catch (error) {
-    console.error("Błąd podczas wysyłania e-maila:", error);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      console.error("Błąd podczas wysyłania e-maila:", error.message);
 
-    // Bardziej szczegółowy komunikat o błędzie
-    const errorMessage =
-      error instanceof Error
-        ? error.message
-        : "Wystąpił nieznany błąd podczas wysyłania wiadomości.";
+      const errorMessage = error.message;
 
-    return NextResponse.json({ error: errorMessage }, { status: 500 });
+      return NextResponse.json({ error: errorMessage }, { status: 500 });
+    } else {
+      console.error("Błąd podczas wysyłania e-maila:", error);
+
+      return NextResponse.json(
+        { error: "Wystąpił nieznany błąd podczas wysyłania wiadomości." },
+        { status: 500 }
+      );
+    }
   }
 }

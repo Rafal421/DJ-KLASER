@@ -89,7 +89,10 @@ const galleryItems = [
       "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747255957/SS-535_umvfxk.jpg",
     description: "Zabawa na weselu",
   },
-];
+].map((item) => ({
+  ...item,
+  image: item.image.replace(/\/upload\//, "/upload/w_auto,q_auto,f_auto/"),
+}));
 
 const isVideo = (url: string) => {
   return url.match(/\.(mp4|webm|ogg|mov)$/i) !== null;

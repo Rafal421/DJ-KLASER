@@ -168,7 +168,10 @@ const galleryItems = [
       "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138838/equipment_rwqqao.jpg",
     description: "Sprzęt DJ-a Kalsera",
   },
-];
+].map((item) => ({
+  ...item,
+  image: item.image.replace(/\/upload\//, "/upload/w_auto,q_auto,f_auto/"),
+}));
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);

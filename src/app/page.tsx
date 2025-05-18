@@ -31,6 +31,7 @@ import Footer from "@/components/footer";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { z } from "zod";
+import ReCAPTCHA from "react-google-recaptcha";
 
 // Form validation schema
 const formSchema = z.object({
@@ -53,6 +54,7 @@ export default function Home() {
   const servicesRef = useRef<HTMLDivElement | null>(null);
   const galleryRef = useRef<HTMLDivElement | null>(null);
   const contactRef = useRef<HTMLDivElement | null>(null);
+  const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
 
   const [formStatus, setFormStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -147,7 +149,7 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, recaptchaToken }),
       });
 
       if (!response.ok) {
@@ -162,6 +164,7 @@ export default function Home() {
         message: "",
       });
       setFormErrors({});
+      setRecaptchaToken(null); // ← opcjonalnie resetuj token
 
       setTimeout(() => setFormStatus("idle"), 3000);
     } catch (error) {
@@ -191,7 +194,6 @@ export default function Home() {
             loop
             preload="auto"
             className="object-cover w-full h-full absolute top-0 left-0"
-            poster="ścieżka_do_obrazka_tła"
           />
         </div>
         <motion.div
@@ -251,9 +253,10 @@ export default function Home() {
             className="mb-12 relative w-full aspect-[21/9] rounded-xl overflow-hidden neon-box"
           >
             <Image
-              src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747140883/518-1-scaled_ftvf35.jpg"
+              src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747140883/518-1-scaled_ftvf35.jpg"
               alt="DJ Klaser szeroki portret"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
@@ -519,9 +522,10 @@ export default function Home() {
                 className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box "
               >
                 <Image
-                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747141319/SS-444-min-1-scaled_zyi96m.jpg"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747141319/SS-444-min-1-scaled_zyi96m.jpg"
                   alt="Usługa DJ na wesele"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </motion.div>
@@ -574,9 +578,10 @@ export default function Home() {
                 className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-16"
               >
                 <Image
-                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138840/party_ing2lh.jpg"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747138840/party_ing2lh.jpg"
                   alt="Wydarzenie firmowe"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </motion.div>
@@ -626,9 +631,10 @@ export default function Home() {
                 className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
               >
                 <Image
-                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138838/equipment_rwqqao.jpg"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747138838/equipment_rwqqao.jpg"
                   alt="Wydarzenie klubowe"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   className="object-cover"
                 />
               </motion.div>
@@ -887,6 +893,11 @@ export default function Home() {
                     />
                   </div>
                 </div>
+                <ReCAPTCHA
+                  sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY!}
+                  onChange={(token) => setRecaptchaToken(token)}
+                  className="mx-auto"
+                />
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
