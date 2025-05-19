@@ -14,22 +14,41 @@ interface NavbarProps {
     ref: React.RefObject<HTMLDivElement | null>;
     label: string;
   }[];
-  scrollToSection: (ref: React.RefObject<HTMLDivElement | null>) => void;
 }
 
-export default function Navbar({ sections, scrollToSection }: NavbarProps) {
+export default function Navbar({ sections }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const [scrolled, setScrolled] = useState(false);
 
+  // Throttle utility
+  function throttle<T extends (...args: unknown[]) => void>(
+    fn: T,
+    wait: number
+  ): T {
+    let last = 0;
+    let timeout: ReturnType<typeof setTimeout> | null = null;
+    let lastArgs: unknown[];
+    return function (this: unknown, ...args: unknown[]) {
+      const now = Date.now();
+      lastArgs = args;
+      if (now - last >= wait) {
+        last = now;
+        fn.apply(this, args);
+      } else if (!timeout) {
+        timeout = setTimeout(() => {
+          last = Date.now();
+          timeout = null;
+          fn.apply(this, lastArgs);
+        }, wait - (now - last));
+      }
+    } as T;
+  }
+
   useEffect(() => {
-    const handleScroll = () => {
-      // Check if page is scrolled
+    const handleScroll = throttle(() => {
       setScrolled(window.scrollY > 50);
-
-      // Determine active section
       const currentPosition = window.scrollY + 100;
-
       for (let i = sections.length - 1; i >= 0; i--) {
         const section = sections[i];
         if (
@@ -40,11 +59,18 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
           break;
         }
       }
-    };
+    }, 100); // 100ms throttling
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sections]);
+
+  // Zapewnij smooth scroll na wszystkich urządzeniach
+  const safeScrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
+    if (ref.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
     <header
@@ -65,7 +91,7 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
           {sections.map((section) => (
             <button
               key={section.id}
-              onClick={() => scrollToSection(section.ref)}
+              onClick={() => safeScrollToSection(section.ref)}
               className={cn(
                 "px-4 py-2 rounded-md text-sm font-medium transition-colors relative",
                 activeSection === section.id
@@ -146,7 +172,7 @@ export default function Navbar({ sections, scrollToSection }: NavbarProps) {
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.3, delay: index * 0.1 }}
                   onClick={() => {
-                    scrollToSection(section.ref);
+                    safeScrollToSection(section.ref);
                     setMobileMenuOpen(false);
                   }}
                   className={cn(

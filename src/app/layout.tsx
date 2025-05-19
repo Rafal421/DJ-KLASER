@@ -1,24 +1,7 @@
 import type React from "react";
 import "@/app/globals.css";
-// import { Montserrat, Poppins, PT_Serif } from "next/font/google";
 import { Audiowide, Rajdhani } from "next/font/google";
 import type { Metadata } from "next";
-
-// const montserrat = Montserrat({
-//   subsets: ["latin"],
-//   variable: "--font-montserrat",
-// });
-
-// const poppins = Poppins({
-//   subsets: ["latin"],
-//   weight: ["500"],
-//   variable: "--font-poppins",
-// });
-
-// const ptSerif = PT_Serif({
-//   subsets: ["latin"],
-//   weight: ["400"],
-// });
 
 const audiowide = Audiowide({
   weight: "400",

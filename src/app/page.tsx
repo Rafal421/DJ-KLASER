@@ -32,6 +32,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { z } from "zod";
 import ReCAPTCHA from "react-google-recaptcha";
+import PageLoadingOverlay from "@/components/page-loading-overlay";
 
 // Form validation schema
 const formSchema = z.object({
@@ -176,7 +177,8 @@ export default function Home() {
 
   return (
     <div className="bg-black text-white min-h-screen w-full overflow-x-hidden relative">
-      <Navbar sections={sections} scrollToSection={scrollToSection} />
+      <PageLoadingOverlay show={formStatus === "loading"} />
+      <Navbar sections={sections} />
 
       {/* Hero Section */}
       <section

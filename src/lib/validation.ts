@@ -47,3 +47,26 @@ export function validateField(
     return false;
   }
 }
+
+export function validateForm(
+  formData: z.infer<typeof formSchema>,
+  setFormErrors?: (errors: FormErrors) => void
+) {
+  try {
+    formSchema.parse(formData);
+    setFormErrors?.({});
+    return true;
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      const newErrors: FormErrors = {};
+      error.errors.forEach((err) => {
+        if (err.path[0]) {
+          newErrors[err.path[0] as keyof z.infer<typeof formSchema>] =
+            err.message;
+        }
+      });
+      setFormErrors?.(newErrors);
+    }
+    return false;
+  }
+}
