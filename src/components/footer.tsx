@@ -10,7 +10,7 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-4 font-display">
               DJ{" "}
               <span className="gradient-text neon-blue font-Audiowide">
-                KALSER
+                Klaser
               </span>
             </h3>
             <p className="text-gray-400 mb-4 font-body">
@@ -99,7 +99,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm font-body">
           <p>
-            &copy; {new Date().getFullYear()} DJ Kalser. Wszelkie prawa
+            &copy; {new Date().getFullYear()} DJ Klaser. Wszelkie prawa
             zastrzeżone.
           </p>
         </div>

@@ -102,6 +102,19 @@ const isVideo = (url: string) => {
   return url.match(/\.(mp4|webm|ogg|mov)$/i) !== null;
 };
 
+const getLightboxImage = (url: string | undefined) => {
+  if (!url) return undefined;
+  if (isVideo(url)) return url;
+  // Ensure w_1200,q_auto,f_auto for lightbox
+  return url.replace(/\/upload\/[^/]*\//, "/upload/w_1200,q_auto,f_auto/");
+};
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const getBlurDataURL = (_url: string | undefined) => {
+  // Optionally, generate a tiny Cloudinary image or use a generic SVG
+  // For demo, use a tiny transparent SVG
+  return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEyIDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjkiIGZpbGw9IiNlZWUiLz48L3N2Zz4=";
+};
+
 export default function GalleryMasonry() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [showInfo, setShowInfo] = useState(false);
@@ -300,16 +313,43 @@ export default function GalleryMasonry() {
                     ) : (
                       <Image
                         src={
-                          galleryItems[selectedImage].image ||
+                          getLightboxImage(galleryItems[selectedImage].image) ||
                           "/placeholder.svg"
                         }
                         alt={galleryItems[selectedImage].description}
                         fill
                         className="object-contain"
                         priority
-                        sizes="(max-width: 1024px) 100vw, 80vw"
+                        sizes="100vw"
+                        placeholder="blur"
+                        blurDataURL={getBlurDataURL(
+                          galleryItems[selectedImage].image
+                        )}
                       />
                     )}
+
+                    {/* Preload next/prev images for instant navigation */}
+                    {[selectedImage - 1, selectedImage + 1].map((idx) => {
+                      const i =
+                        (idx + galleryItems.length) % galleryItems.length;
+                      const item = galleryItems[i];
+                      if (!item || isVideo(item.image || "")) return null;
+                      return (
+                        <Image
+                          key={i}
+                          src={
+                            getLightboxImage(item.image) || "/placeholder.svg"
+                          }
+                          alt={item.description}
+                          fill
+                          style={{ display: "none" }}
+                          sizes="100vw"
+                          placeholder="blur"
+                          blurDataURL={getBlurDataURL(item.image)}
+                          priority={false}
+                        />
+                      );
+                    })}
 
                     {/* Info panel */}
                     <AnimatePresence>

@@ -177,6 +177,19 @@ const galleryItems = [
     : undefined,
 }));
 
+const getLightboxImage = (url: string | undefined) => {
+  if (!url) return undefined;
+  if (isVideo(url)) return url;
+  // Ensure w_1200,q_auto,f_auto for lightbox
+  return url.replace(/\/upload\/[^/]*\//, "/upload/w_1200,q_auto,f_auto/");
+};
+
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const getBlurDataURL = (_url: string | undefined) => {
+  // Use a dark SVG for a dark blur effect
+  return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEyIDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjkiIGZpbGw9IiMwMDAiLz48L3N2Zz4=";
+};
+
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
   const [showInfo, setShowInfo] = useState(false);
@@ -414,14 +427,18 @@ export default function GalleryPage() {
                     ) : (
                       <Image
                         src={
-                          galleryItems[selectedImage].image ||
+                          getLightboxImage(galleryItems[selectedImage].image) ||
                           "/placeholder.svg"
                         }
                         alt={galleryItems[selectedImage].description}
                         fill
                         className="object-contain"
                         priority={true}
-                        sizes="(max-width: 1024px) 100vw, 80vw"
+                        sizes="(min-width:1280px) 1152px, 100vw"
+                        placeholder="blur"
+                        blurDataURL={getBlurDataURL(
+                          galleryItems[selectedImage].image
+                        )}
                       />
                     )}
 

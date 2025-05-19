@@ -253,11 +253,12 @@ export default function Home() {
             className="mb-12 relative w-full aspect-[21/9] rounded-xl overflow-hidden neon-box"
           >
             <Image
-              src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747140883/518-1-scaled_ftvf35.jpg"
+              src="https://res.cloudinary.com/dscvxyjvn/image/upload/q_80,f_auto,w_1600/v1747140883/518-1-scaled_ftvf35.jpg"
               alt="DJ Klaser szeroki portret"
               fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              sizes="100vw"
               className="object-cover"
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
           </motion.div>
