@@ -275,7 +275,7 @@ export default function GalleryMasonry() {
               </button>
 
               {/* Image/Video content */}
-              <div className="relative w-full h-[85vh]">
+              <div className="relative w-full h-[85vh] bg-black">
                 <AnimatePresence initial={false} custom={direction}>
                   <motion.div
                     key={selectedImage}
