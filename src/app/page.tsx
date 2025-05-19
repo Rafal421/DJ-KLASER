@@ -271,7 +271,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-2xl font-bold mb-6 gradient-text font-display"
+              className="text-3xl font-bold mb-6 gradient-text font-display"
             >
               Architekt Dźwięku
             </motion.h3>
@@ -280,7 +280,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-gray-300 mb-4 font-body"
+              className="text-gray-300 mb-4 font-body text-lg"
             >
               Od ponad dekady mam przyjemność uczestniczyć w setkach wyjątkowych
               wydarzeń – od kameralnych wesel po duże eventy i festiwale.
@@ -290,7 +290,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-gray-300 mb-4 font-body"
+              className="text-gray-300 mb-4 font-body text-lg"
             >
               Moja przygoda z DJ-ką zaczęła się w wieku 16 lat, kiedy miksowałem
               utwory na spotkaniach rodzinnych i imprezach znajomych. Z pasji
@@ -302,7 +302,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="text-gray-300 mb-6 font-body"
+              className="text-gray-300 mb-6 font-body text-lg"
             >
               Wierzę, że każde wydarzenie jest wyjątkowe, dlatego tworzę
               spersonalizowane playlisty i atmosferę dopasowaną do oczekiwań
@@ -473,7 +473,7 @@ export default function Home() {
               Usługi
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body text-base">
               Profesjonalne usługi DJ-skie dostosowane do potrzeb Twojego
               wydarzenia
             </p>
@@ -494,7 +494,7 @@ export default function Home() {
                   <Calendar className="h-8 w-8 text-blue-500" />
                 </div>
                 <h3 className="text-xl font-bold mb-3 font-display">Wesela</h3>
-                <p className="text-gray-300 mb-6 font-body">
+                <p className="text-gray-300 mb-6 font-body text-base">
                   Stwórz magiczne chwile w dniu swojego ślubu dzięki naszym
                   profesjonalnym usługom DJ-skim. Od romantycznych pierwszych
                   tańców po energetyczne sety taneczne.
@@ -508,7 +508,7 @@ export default function Home() {
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
-                      <span className="text-gray-300 text-sm font-body">
+                      <span className="text-gray-300 font-body text-base">
                         {feature}
                       </span>
                     </li>
@@ -547,7 +547,7 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-3 font-display">
                   Imprezy Prywatne
                 </h3>
-                <p className="text-gray-300 mb-6 font-body">
+                <p className="text-gray-300 mb-6 font-body text-base">
                   Spraw, by Twoje prywatne wydarzenie było niezapomniane dzięki
                   spersonalizowanej muzyce, która odpowiada nastrojowi i bawi
                   Twoich gości.
@@ -561,7 +561,7 @@ export default function Home() {
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
-                      <span className="text-gray-300 text-sm font-body">
+                      <span className="text-gray-300 font-body text-base">
                         {feature}
                       </span>
                     </li>
@@ -575,10 +575,10 @@ export default function Home() {
               {/* Corporate Image - standardized aspect ratio */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1 }}
+                whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-16"
+                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-8  "
               >
                 <Image
                   src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747138840/party_ing2lh.jpg"
@@ -603,7 +603,7 @@ export default function Home() {
                 <h3 className="text-xl font-bold mb-3 font-display">
                   Wydarzenia Klubowe
                 </h3>
-                <p className="text-gray-300 mb-6 font-body">
+                <p className="text-gray-300 mb-6 font-body text-base">
                   Podnieś poziom swojej imprezy klubowej dzięki energetycznym
                   setom, które porwą tłumy do tańca. Specjalizuję się w muzyce
                   house, EDM, hip-hop i open format.
@@ -617,7 +617,7 @@ export default function Home() {
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
-                      <span className="text-gray-300 text-sm font-body">
+                      <span className="text-gray-300 font-body text-base">
                         {feature}
                       </span>
                     </li>
@@ -697,7 +697,7 @@ export default function Home() {
                   <h4 className="text-lg font-medium mb-2 font-display">
                     {item.title}
                   </h4>
-                  <p className="text-gray-300 text-sm font-body">
+                  <p className="text-gray-300 font-body text-base">
                     {item.description}
                   </p>
                 </motion.div>
@@ -725,7 +725,7 @@ export default function Home() {
               Galeria
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body text-base">
               Chwile uchwycone z niezapomnianych wydarzeń i występów
             </p>
           </motion.div>
@@ -751,7 +751,7 @@ export default function Home() {
       <section
         ref={contactRef}
         id="contact"
-        className="py-24 scetion-transition-5"
+        className="py-24 section-transition-5"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -765,7 +765,7 @@ export default function Home() {
               Kontakt
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body text-base">
               Skontaktuj się, aby zarezerwować swoje wydarzenie lub zapytać o
               usługi
             </p>
@@ -782,7 +782,7 @@ export default function Home() {
               <h3 className="text-2xl font-bold mb-6 font-display">
                 Skontaktuj się
               </h3>
-              <p className="text-gray-300 mb-8 font-body">
+              <p className="text-gray-300 mb-8 font-body text-base">
                 Masz pytania dotyczące moich usług lub chcesz zarezerwować
                 termin na swoje wydarzenie? Wypełnij formularz lub skontaktuj
                 się ze mną bezpośrednio, korzystając z poniższych danych.
