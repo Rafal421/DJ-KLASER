@@ -22,20 +22,6 @@ Elevate your web experience with seamless creativity.
 
 ---
 
-## 📑 Table of Contents
-
-- [Overview](#overview)
-- [Why DJ-KLASER?](#why-dj-klaser)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
-
----
-
 ## 🧭 Overview
 
 **DJ-KLASER** is a modern web application designed to deliver a sleek, interactive user experience using cutting-edge technologies such as **React**, **TypeScript**, and **Tailwind CSS**.
