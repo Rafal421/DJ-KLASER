@@ -1,19 +1,5 @@
-import {
-  HeroSectionLoading,
-  AboutSectionLoading,
-  ServicesSectionLoading,
-  ContactSectionLoading,
-} from "@/components/page-loading";
-import { GalleryLoading } from "@/components/gallery-loading";
+import PageLoadingOverlay from "@/components/page-loading-overlay";
 
 export default function Loading() {
-  return (
-    <div className="bg-black text-white min-h-screen w-full overflow-x-hidden relative">
-      <HeroSectionLoading />
-      <AboutSectionLoading />
-      <ServicesSectionLoading />
-      <GalleryLoading />
-      <ContactSectionLoading />
-    </div>
-  );
+  return <PageLoadingOverlay />;
 }
