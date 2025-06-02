@@ -275,7 +275,7 @@ export default function GalleryMasonry() {
               </button>
 
               {/* Image/Video content */}
-              <div className="relative w-full h-[85vh] bg-black">
+              <div className="relative w-full h-[85vh]">
                 <AnimatePresence initial={false} custom={direction}>
                   <motion.div
                     key={selectedImage}
@@ -303,7 +303,7 @@ export default function GalleryMasonry() {
                     {isVideo(galleryItems[selectedImage].image || "") ? (
                       <video
                         src={galleryItems[selectedImage].image}
-                        className="max-h-full max-w-full bg-black"
+                        className="max-h-full max-w-full "
                         controls
                         autoPlay
                         loop
@@ -318,7 +318,7 @@ export default function GalleryMasonry() {
                         }
                         alt={galleryItems[selectedImage].description}
                         fill
-                        className="object-contain bg-black"
+                        className="object-contain "
                         priority
                         sizes="100vw"
                         placeholder="blur"

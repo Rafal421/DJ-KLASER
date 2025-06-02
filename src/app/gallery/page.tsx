@@ -443,7 +443,7 @@ export default function GalleryPage() {
                         }
                         alt={galleryItems[selectedImage].description}
                         fill
-                        className="object-contain bg-black"
+                        className="object-contain "
                         priority={true}
                         sizes="(max-width: 1024px) 100vw, 80vw"
                       />
