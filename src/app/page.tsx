@@ -32,7 +32,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { z } from "zod";
 import ReCAPTCHA from "react-google-recaptcha";
-import PageLoadingOverlay from "@/components/page-loading-overlay";
 
 // Form validation schema
 const formSchema = z.object({
@@ -75,11 +74,11 @@ export default function Home() {
     ref: React.RefObject<HTMLDivElement | null>;
     label: string;
   }[] = [
-    { id: "home", ref: homeRef, label: "Home" },
-    { id: "about", ref: aboutRef, label: "About Me" },
-    { id: "services", ref: servicesRef, label: "Services" },
-    { id: "gallery", ref: galleryRef, label: "Gallery" },
-    { id: "contact", ref: contactRef, label: "Contact" },
+    { id: "home", ref: homeRef, label: "Strona główna" },
+    { id: "about", ref: aboutRef, label: "O mnie" },
+    { id: "services", ref: servicesRef, label: "Usługi" },
+    { id: "gallery", ref: galleryRef, label: "Galeria" },
+    { id: "contact", ref: contactRef, label: "Kontakt" },
   ];
 
   const scrollToSection = (
@@ -177,7 +176,6 @@ export default function Home() {
 
   return (
     <div className="bg-black text-white min-h-screen w-full overflow-x-hidden relative">
-      <PageLoadingOverlay show={formStatus === "loading"} />
       <Navbar sections={sections} />
 
       {/* Hero Section */}
@@ -255,12 +253,11 @@ export default function Home() {
             className="mb-12 relative w-full aspect-[21/9] rounded-xl overflow-hidden neon-box"
           >
             <Image
-              src="https://res.cloudinary.com/dscvxyjvn/image/upload/q_80,f_auto,w_1600/v1747140883/518-1-scaled_ftvf35.jpg"
+              src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747140883/518-1-scaled_ftvf35.jpg"
               alt="DJ Klaser szeroki portret"
               fill
-              sizes="100vw"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               className="object-cover"
-              priority
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-black/60 to-transparent"></div>
           </motion.div>
@@ -271,43 +268,66 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-3xl font-bold mb-6 gradient-text font-display"
+              className="text-2xl font-bold mb-6 gradient-text font-display"
             >
-              Architekt Dźwięku
+              Architekt Dobrej Zabawy
             </motion.h3>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               viewport={{ once: true }}
-              className="text-gray-300 mb-4 font-body text-lg"
+              className="text-gray-300 mb-4 font-body text-base md:text-xl"
             >
-              Od ponad dekady mam przyjemność uczestniczyć w setkach wyjątkowych
-              wydarzeń – od kameralnych wesel po duże eventy i festiwale.
+              Od ponad dekady z pasją tworzę niezapomniane wydarzenia muzyczne
+              oraz imprezy okolicznościowe.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               viewport={{ once: true }}
-              className="text-gray-300 mb-4 font-body text-lg"
+              className="text-gray-300 mb-4 font-body text-base md:text-xl "
             >
-              Moja przygoda z DJ-ką zaczęła się w wieku 16 lat, kiedy miksowałem
-              utwory na spotkaniach rodzinnych i imprezach znajomych. Z pasji
-              szybko przerodziło się to w zawód, a ja stale rozwijałem swoje
-              umiejętności i poszerzałem repertuar.
+              Moja pasja szybko stała się zawodem, a każdy kolejny event to
+              okazja do dalszego rozwoju i poszerzania muzycznego repertuaru.
             </motion.p>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               viewport={{ once: true }}
-              className="text-gray-300 mb-6 font-body text-lg"
+              className="text-gray-300 mb-6 font-body text-base md:text-xl"
             >
-              Wierzę, że każde wydarzenie jest wyjątkowe, dlatego tworzę
-              spersonalizowane playlisty i atmosferę dopasowaną do oczekiwań
-              moich klientów. Moim celem jest jedno: niezapomniana zabawa i
-              pełny parkiet przez całą noc!
+              Wierzę, że każde wydarzenie zasługuje na wyjątkową oprawę –
+              dlatego przygotowuję indywidualne playlisty i dbam o atmosferę
+              dopasowaną do oczekiwań moich klientów. Moim priorytetem jest, by
+              parkiet był pełen przez całą noc!
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="text-gray-300 mb-6 font-body text-base md:text-xl"
+            >
+              Każda impreza to niepowtarzalne widowisko muzyczne, idealnie
+              dopasowane do gustu i potrzeb klienta.
+            </motion.p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              viewport={{ once: true }}
+              className="text-gray-300 mb-6 font-body text-base md:text-xl"
+            >
+              Podczas dużych, rodzinnych imprez okolicznościowych występujemy w
+              duecie{" "}
+              <span className="font-semibold text-blue-400">
+                DJ KLASER & DJ SZPILKA
+              </span>
+              , aby zapewnić wyjątkową oprawę muzyczną i niezapomnianą zabawę
+              dla wszystkich uczestników.
             </motion.p>
 
             <motion.div
@@ -322,8 +342,10 @@ export default function Home() {
                   <Disc className="h-6 w-6 text-blue-500" />
                 </div>
                 <div>
-                  <p className="font-medium text-white font-body">10+ lat</p>
-                  <p className="text-sm text-gray-400 font-body">
+                  <p className="font-medium text-white font-body text-base md:text-xl">
+                    10+ lat
+                  </p>
+                  <p className="text-sm text-gray-400 font-body md:text-base">
                     Doświadczenia
                   </p>
                 </div>
@@ -333,8 +355,12 @@ export default function Home() {
                   <Music className="h-6 w-6 text-blue-500" />
                 </div>
                 <div>
-                  <p className="font-medium text-white font-body">500+</p>
-                  <p className="text-sm text-gray-400 font-body">Wydarzeń</p>
+                  <p className="font-medium text-white font-body md:text-xl">
+                    100+
+                  </p>
+                  <p className="text-sm text-gray-400 font-body md:text-base">
+                    Wydarzeń
+                  </p>
                 </div>
               </div>
               <div className="flex items-center">
@@ -342,8 +368,10 @@ export default function Home() {
                   <Heart className="h-6 w-6 text-blue-500" />
                 </div>
                 <div>
-                  <p className="font-medium text-white font-body">1000+</p>
-                  <p className="text-sm text-gray-400 font-body">
+                  <p className="font-medium text-white font-body md:text-xl">
+                    100+
+                  </p>
+                  <p className="text-sm text-gray-400 font-body md:text-base">
                     Zadowolonych klientów
                   </p>
                 </div>
@@ -367,7 +395,7 @@ export default function Home() {
               Co mnie <span className="gradient-text">wyróżnia?</span>
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body">
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body md:text-xl">
               Oferuję muzykę i oświetlenie wraz z profesjonalnym prowadzeniem
               imprez.
             </p>
@@ -407,7 +435,7 @@ export default function Home() {
               <h3 className="text-xl font-bold mb-3 text-center font-display">
                 PROFESJONALIZM
               </h3>
-              <p className="text-gray-300 text-center font-body">
+              <p className="text-gray-300 text-center font-body ">
                 Dbam o każdy szczegół, by Twoje wydarzenie przebiegło
                 perfekcyjnie.
               </p>
@@ -445,10 +473,11 @@ export default function Home() {
                 <Star className="h-8 w-8 text-blue-500" />
               </div>
               <h3 className="text-xl font-bold mb-3 text-center font-display">
-                BOGATE DOŚWIADCZENIE
+                Wesela
               </h3>
               <p className="text-gray-300 text-center font-body">
-                Lata praktyki i zaufanie wielu klientów.
+                To magiczne wydarzenie wymaga szczególnej uwagi, dlatego
+                poprawidzimy go dla Was w duecie. DJ KLASER & DJ SZPILKA.
               </p>
             </motion.div>
           </div>
@@ -473,7 +502,7 @@ export default function Home() {
               Usługi
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body text-base">
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body md:text-xl">
               Profesjonalne usługi DJ-skie dostosowane do potrzeb Twojego
               wydarzenia
             </p>
@@ -493,8 +522,10 @@ export default function Home() {
                 <div className="mb-6">
                   <Calendar className="h-8 w-8 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 font-display">Wesela</h3>
-                <p className="text-gray-300 mb-6 font-body text-base">
+                <h3 className="text-xl font-bold mb-3 font-display md:text-4xl">
+                  Wesela
+                </h3>
+                <p className="text-gray-300 mb-6 font-body md:text-xl">
                   Stwórz magiczne chwile w dniu swojego ślubu dzięki naszym
                   profesjonalnym usługom DJ-skim. Od romantycznych pierwszych
                   tańców po energetyczne sety taneczne.
@@ -508,7 +539,7 @@ export default function Home() {
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
-                      <span className="text-gray-300 font-body text-base">
+                      <span className="text-gray-300 text-sm md:text-xl font-body">
                         {feature}
                       </span>
                     </li>
@@ -544,10 +575,10 @@ export default function Home() {
                 <div className="mb-6">
                   <Users className="h-8 w-8 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 font-display">
+                <h3 className="text-xl font-bold mb-3 font-display md:text-4xl">
                   Imprezy Prywatne
                 </h3>
-                <p className="text-gray-300 mb-6 font-body text-base">
+                <p className="text-gray-300 mb-6 font-body md:text-xl">
                   Spraw, by Twoje prywatne wydarzenie było niezapomniane dzięki
                   spersonalizowanej muzyce, która odpowiada nastrojowi i bawi
                   Twoich gości.
@@ -561,7 +592,7 @@ export default function Home() {
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
-                      <span className="text-gray-300 font-body text-base">
+                      <span className="text-gray-300 text-sm md:text-xl font-body">
                         {feature}
                       </span>
                     </li>
@@ -575,10 +606,10 @@ export default function Home() {
               {/* Corporate Image - standardized aspect ratio */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                whileInView={{ opacity: 1 }}
                 transition={{ duration: 0.5 }}
                 viewport={{ once: true }}
-                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-8  "
+                className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-16"
               >
                 <Image
                   src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747138840/party_ing2lh.jpg"
@@ -600,10 +631,10 @@ export default function Home() {
                 <div className="mb-6">
                   <Music className="h-8 w-8 text-blue-500" />
                 </div>
-                <h3 className="text-xl font-bold mb-3 font-display">
+                <h3 className="text-xl font-bold mb-3 font-display md:text-4xl">
                   Wydarzenia Klubowe
                 </h3>
-                <p className="text-gray-300 mb-6 font-body text-base">
+                <p className="text-gray-300 mb-6 font-body md:text-xl">
                   Podnieś poziom swojej imprezy klubowej dzięki energetycznym
                   setom, które porwą tłumy do tańca. Specjalizuję się w muzyce
                   house, EDM, hip-hop i open format.
@@ -617,7 +648,7 @@ export default function Home() {
                   ].map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <div className="h-5 w-5 text-green-500 mr-2">✓</div>
-                      <span className="text-gray-300 font-body text-base">
+                      <span className="text-gray-300 text-sm md:text-xl font-body">
                         {feature}
                       </span>
                     </li>
@@ -634,7 +665,7 @@ export default function Home() {
                 className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box"
               >
                 <Image
-                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747138838/equipment_rwqqao.jpg"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1748853619/IMG_1910_cp9hl8.jpg"
                   alt="Wydarzenie klubowe"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -661,9 +692,8 @@ export default function Home() {
                 {
                   title: "Nagłośnienie",
                   icon: <Headphones className="h-6 w-6 text-blue-500" />,
-                  description:
-                    "Najwyższej klasy głośniki i sprzęt audio zapewniający krystalicznie czysty dźwięk w każdym miejscu.",
-                  color: "from-blue-500/20 to-blue-900/30",
+                  description: <>Turbosound INSPIRE IP3000</>,
+                  color: "from-blue-500/20 to-blue-900/30 ",
                   border: "border-blue-500/30",
                 },
                 {
@@ -677,8 +707,7 @@ export default function Home() {
                 {
                   title: "Sprzęt DJ-ski",
                   icon: <Music className="h-6 w-6 text-blue-500" />,
-                  description:
-                    "Profesjonalne kontrolery, miksery i oprogramowanie do płynnego miksowania i występów.",
+                  description: "Denon DJ Prime 4+",
                   color: "from-blue-500/20 to-blue-900/30",
                   border: "border-blue-500/30",
                 },
@@ -694,10 +723,10 @@ export default function Home() {
                   <div className="w-12 h-12 bg-black/50 rounded-full flex items-center justify-center mb-4">
                     {item.icon}
                   </div>
-                  <h4 className="text-lg font-medium mb-2 font-display">
+                  <h4 className="text-lg font-medium md:text-xl mb-2 font-display">
                     {item.title}
                   </h4>
-                  <p className="text-gray-300 font-body text-base">
+                  <p className="text-gray-300 text-basic md:text-lg font-body">
                     {item.description}
                   </p>
                 </motion.div>
@@ -725,7 +754,7 @@ export default function Home() {
               Galeria
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body text-base">
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body md:text-xl">
               Chwile uchwycone z niezapomnianych wydarzeń i występów
             </p>
           </motion.div>
@@ -735,7 +764,7 @@ export default function Home() {
           <div className="mt-16 text-center">
             <Button
               size="lg"
-              className="bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
+              className="bg-blue-600 hover:bg-blue-700 text-white neon-box font-body md:text-medium"
               asChild
             >
               <Link href="/gallery">
@@ -751,7 +780,7 @@ export default function Home() {
       <section
         ref={contactRef}
         id="contact"
-        className="py-24 section-transition-5"
+        className="py-24 scetion-transition-5"
       >
         <div className="container mx-auto px-4">
           <motion.div
@@ -765,7 +794,7 @@ export default function Home() {
               Kontakt
             </h2>
             <div className="h-1 w-20 bg-blue-500 mx-auto"></div>
-            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body text-base">
+            <p className="mt-4 text-gray-400 max-w-2xl mx-auto font-body md:text-xl">
               Skontaktuj się, aby zarezerwować swoje wydarzenie lub zapytać o
               usługi
             </p>
@@ -779,10 +808,10 @@ export default function Home() {
               transition={{ duration: 0.8 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold mb-6 font-display">
+              <h3 className="text-2xl font-bold mb-6 font-display md:text-2xl">
                 Skontaktuj się
               </h3>
-              <p className="text-gray-300 mb-8 font-body text-base">
+              <p className="text-gray-300 mb-8 font-body md:text-lg">
                 Masz pytania dotyczące moich usług lub chcesz zarezerwować
                 termin na swoje wydarzenie? Wypełnij formularz lub skontaktuj
                 się ze mną bezpośrednio, korzystając z poniższych danych.
@@ -794,10 +823,12 @@ export default function Home() {
                     <Phone className="h-5 w-5 text-blue-500" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-white font-display">
+                    <h4 className="font-medium text-white font-display md:text-2xl">
                       Telefon
                     </h4>
-                    <p className="text-gray-300 font-body">+48 515 255 477</p>
+                    <p className="text-gray-300 font-body md:text-lg">
+                      +48 515 255 477
+                    </p>
                   </div>
                 </div>
 
@@ -806,10 +837,12 @@ export default function Home() {
                     <Mail className="h-5 w-5 text-blue-500" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-white font-display">
+                    <h4 className="font-medium text-white font-display md:text-2xl">
                       Email
                     </h4>
-                    <p className="text-gray-300 font-body">hak73@op.pl</p>
+                    <p className="text-gray-300 font-body md:text-lg  ">
+                      hak73@op.pl
+                    </p>
                   </div>
                 </div>
 
@@ -818,13 +851,13 @@ export default function Home() {
                     <MapPin className="h-5 w-5 text-blue-500" />
                   </div>
                   <div>
-                    <h4 className="font-medium text-white font-display">
+                    <h4 className="font-medium text-white font-display md:text-2xl">
                       Lokalizacja
                     </h4>
-                    <p className="text-gray-300 font-body">
-                      Okolice Ośwecimia
+                    <p className="text-gray-300 font-body md:text-lg">
+                      Kęty, Oświecim, Bielsko-Biała I okolice
                       <br />
-                      Wszystko do dogadania
+                      Wszystko do ustalenia
                     </p>
                   </div>
                 </div>
@@ -849,7 +882,7 @@ export default function Home() {
                   <div className="space-y-2">
                     <label
                       htmlFor="fullName"
-                      className="text-sm font-medium text-gray-300 font-body"
+                      className="text-sm font-medium text-gray-300 font-body md:text-lg"
                     >
                       Imię i nazwisko
                     </label>
@@ -865,7 +898,7 @@ export default function Home() {
                   <div className="space-y-2">
                     <label
                       htmlFor="email"
-                      className="text-sm font-medium text-gray-300 font-body"
+                      className="text-sm font-medium text-gray-300 font-body md:text-lg"
                     >
                       Adres e-mail
                     </label>
@@ -882,7 +915,7 @@ export default function Home() {
                   <div className="space-y-2 md:col-span-2">
                     <label
                       htmlFor="phone"
-                      className="text-sm font-medium text-gray-300 font-body"
+                      className="text-sm font-medium text-gray-300 font-body md:text-lg"
                     >
                       Numer telefonu
                     </label>
@@ -891,7 +924,7 @@ export default function Home() {
                       type="tel"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Twój numer telefonu (opcjonalnie)"
+                      placeholder="Twój numer telefonu"
                       className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     />
                   </div>
@@ -904,7 +937,7 @@ export default function Home() {
                 <div className="space-y-2">
                   <label
                     htmlFor="message"
-                    className="text-sm font-medium text-gray-300 font-body"
+                    className="text-sm font-medium text-gray-300 font-body md:text-lg"
                   >
                     Wiadomość
                   </label>
@@ -920,7 +953,7 @@ export default function Home() {
                 </div>
                 <Button
                   type="submit"
-                  className="w-full bg-blue-600 hover:bg-blue-700 text-white neon-box font-body"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white neon-box font-body md:text-1000"
                   disabled={formStatus === "loading"}
                 >
                   {formStatus === "loading" ? (
@@ -936,13 +969,13 @@ export default function Home() {
                   )}
                 </Button>
                 {formStatus === "success" && (
-                  <p className="text-green-500 text-sm text-center">
+                  <p className="text-green-500 text-sm text-center md:text-lg">
                     Wiadomość wysłana pomyślnie! Skontaktujemy się z Tobą
                     wkrótce.
                   </p>
                 )}
                 {formStatus === "error" && (
-                  <p className="text-red-500 text-sm text-center">
+                  <p className="text-red-500 text-sm text-center md:text-lg">
                     Nie udało się wysłać wiadomości. Sprawdź formularz i spróbuj
                     ponownie.
                   </p>
@@ -954,7 +987,7 @@ export default function Home() {
       </section>
 
       {/* Footer - Using the new Footer component */}
-      <Footer />
+      <Footer sections={sections} />
     </div>
   );
 }

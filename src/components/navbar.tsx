@@ -87,7 +87,7 @@ export default function Navbar({ sections }: NavbarProps) {
           <span className="gradient-text neon-blue font-Audiowide">KLASER</span>
         </a>
         {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center space-x-1">
+        <div className="hidden md:flex items-center space-x-1 text-xl">
           {sections.map((section) => (
             <button
               key={section.id}
@@ -182,11 +182,7 @@ export default function Navbar({ sections }: NavbarProps) {
                       : "text-gray-400 hover:text-white hover:bg-dj-blue/10 hover:border hover:border-dj-blue/50"
                   )}
                 >
-                  {section.id === "home" && "Strona główna"}
-                  {section.id === "about" && "O mnie"}
-                  {section.id === "services" && "Usługi"}
-                  {section.id === "gallery" && "Galeria"}
-                  {section.id === "contact" && "Kontakt"}
+                  {section.label}
                 </motion.button>
               ))}
             </div>

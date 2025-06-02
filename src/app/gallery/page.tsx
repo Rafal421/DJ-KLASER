@@ -168,6 +168,31 @@ const galleryItems = [
       "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138838/equipment_rwqqao.jpg",
     description: "Sprzęt DJ-a Kalsera",
   },
+  {
+    id: 25,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1748850332/IMG_2372_j33qjg.jpg",
+    description: "Sprzęt DJ-a Kalsera",
+  },
+  {
+    id: 26,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1748850332/IMG_1624_xihip0.jpg",
+    description: "Sprzęt DJ-a Kalsera",
+  },
+  {
+    id: 27,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1748850333/IMG_1571_qqx0ka.png",
+    description: "DJ-a Kalser",
+  },
+
+  {
+    id: 28,
+    image:
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1748854063/IMG_6624_nyezds.png",
+    description: "DJ-a Kalser",
+  },
 ].map((item) => ({
   ...item,
   image: item.image
@@ -176,19 +201,6 @@ const galleryItems = [
       : item.image.replace(/\/upload\//, "/upload/w_auto,q_auto,f_auto/")
     : undefined,
 }));
-
-const getLightboxImage = (url: string | undefined) => {
-  if (!url) return undefined;
-  if (isVideo(url)) return url;
-  // Ensure w_1200,q_auto,f_auto for lightbox
-  return url.replace(/\/upload\/[^/]*\//, "/upload/w_1200,q_auto,f_auto/");
-};
-
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const getBlurDataURL = (_url: string | undefined) => {
-  // Use a dark SVG for a dark blur effect
-  return "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iOSIgdmlld0JveD0iMCAwIDEyIDkiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyIiBoZWlnaHQ9IjkiIGZpbGw9IiMwMDAiLz48L3N2Zz4=";
-};
 
 export default function GalleryPage() {
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
@@ -427,18 +439,14 @@ export default function GalleryPage() {
                     ) : (
                       <Image
                         src={
-                          getLightboxImage(galleryItems[selectedImage].image) ||
+                          galleryItems[selectedImage].image ||
                           "/placeholder.svg"
                         }
                         alt={galleryItems[selectedImage].description}
                         fill
                         className="object-contain"
                         priority={true}
-                        sizes="(min-width:1280px) 1152px, 100vw"
-                        placeholder="blur"
-                        blurDataURL={getBlurDataURL(
-                          galleryItems[selectedImage].image
-                        )}
+                        sizes="(max-width: 1024px) 100vw, 80vw"
                       />
                     )}
 
@@ -493,7 +501,14 @@ export default function GalleryPage() {
       </AnimatePresence>
 
       {/* Footer */}
-      <Footer />
+      <div className="border-t border-gray-800 pt-7 pb-7 text-center text-gray-400 text-sm font-body">
+        <p>
+          &copy; {new Date().getFullYear()}{" "}
+          <span className="font-bold font-display">DJ</span>{" "}
+          <span className="gradient-text neon-blue font-Audiowide">Klaser</span>
+          . Wszelkie prawa zastrzeżone.
+        </p>
+      </div>
     </div>
   );
 }

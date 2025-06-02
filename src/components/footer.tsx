@@ -1,7 +1,26 @@
 import Link from "next/link";
-import { Facebook, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
+import type React from "react";
 
-export default function Footer() {
+export interface FooterSection {
+  id: string;
+  label: string;
+  ref?: React.RefObject<HTMLDivElement | null>;
+  href?: string; // np. /gallery
+}
+
+interface FooterProps {
+  sections: FooterSection[];
+}
+
+export default function Footer({ sections }: FooterProps) {
+  // Funkcja smooth scroll
+  const safeScrollToSection = (ref: React.RefObject<HTMLDivElement | null>) => {
+    if (ref?.current) {
+      ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <footer className="bg-black border-t border-blue-500/20 text-white">
       <div className="container mx-auto px-4 py-12">
@@ -16,15 +35,6 @@ export default function Footer() {
             <p className="text-gray-400 mb-4 font-body">
               Tworzę niezapomniane muzyczne doświadczenia na każdą okazję.
             </p>
-            <div className="flex space-x-4">
-              <Link
-                href="https://www.facebook.com/krzysztof.haczek.3"
-                className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center hover:bg-blue-500/40 transition-colors duration-300 border border-blue-500/30 neon-box"
-              >
-                <Facebook className="h-5 w-5 text-blue-400" />
-                <span className="sr-only">Facebook</span>
-              </Link>
-            </div>
           </div>
 
           <div>
@@ -32,26 +42,26 @@ export default function Footer() {
               Szybkie linki
             </h3>
             <ul className="space-y-2 font-body">
-              {["Strona główna", "O mnie", "Usługi", "Galeria", "Kontakt"].map(
-                (item, idx) => (
-                  <li key={item}>
+              {sections.map(({ id, label, ref, href }) => (
+                <li key={id}>
+                  {ref ? (
+                    <button
+                      type="button"
+                      className="text-gray-400 hover:text-blue-400 transition-colors bg-transparent border-0 p-0 cursor-pointer"
+                      onClick={() => safeScrollToSection(ref)}
+                    >
+                      {label}
+                    </button>
+                  ) : (
                     <Link
-                      href={
-                        idx === 0
-                          ? "/"
-                          : `#${
-                              ["about", "services", "gallery", "contact"][
-                                idx - 1
-                              ]
-                            }`
-                      }
+                      href={href || "/"}
                       className="text-gray-400 hover:text-blue-400 transition-colors"
                     >
-                      {item}
+                      {label}
                     </Link>
-                  </li>
-                )
-              )}
+                  )}
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -66,12 +76,16 @@ export default function Footer() {
                 "Oświetlenie",
               ].map((item) => (
                 <li key={item}>
-                  <Link
-                    href="#services"
-                    className="text-gray-400 hover:text-blue-400 transition-colors"
+                  <button
+                    type="button"
+                    className="text-gray-400 hover:text-blue-400 transition-colors bg-transparent border-0 p-0 cursor-pointer"
+                    onClick={() => {
+                      const section = sections.find((s) => s.id === "services");
+                      if (section?.ref) safeScrollToSection(section.ref);
+                    }}
                   >
                     {item}
-                  </Link>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -99,8 +113,12 @@ export default function Footer() {
 
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400 text-sm font-body">
           <p>
-            &copy; {new Date().getFullYear()} DJ Klaser. Wszelkie prawa
-            zastrzeżone.
+            &copy; {new Date().getFullYear()}{" "}
+            <span className="font-bold font-display">DJ</span>{" "}
+            <span className="gradient-text neon-blue font-Audiowide">
+              Klaser
+            </span>
+            . Wszelkie prawa zastrzeżone.
           </p>
         </div>
       </div>
