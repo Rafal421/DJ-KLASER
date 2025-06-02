@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
-import Footer from "@/components/footer";
 
 // Helper function to determine if a file is a video
 const isVideo = (url: string) => {
@@ -444,7 +443,7 @@ export default function GalleryPage() {
                         }
                         alt={galleryItems[selectedImage].description}
                         fill
-                        className="object-contain"
+                        className="object-contain bg-black"
                         priority={true}
                         sizes="(max-width: 1024px) 100vw, 80vw"
                       />

@@ -303,7 +303,7 @@ export default function GalleryMasonry() {
                     {isVideo(galleryItems[selectedImage].image || "") ? (
                       <video
                         src={galleryItems[selectedImage].image}
-                        className="max-h-full max-w-full"
+                        className="max-h-full max-w-full bg-black"
                         controls
                         autoPlay
                         loop
@@ -318,7 +318,7 @@ export default function GalleryMasonry() {
                         }
                         alt={galleryItems[selectedImage].description}
                         fill
-                        className="object-contain"
+                        className="object-contain bg-black"
                         priority
                         sizes="100vw"
                         placeholder="blur"
