@@ -33,18 +33,30 @@ import Link from "next/link";
 import { z } from "zod";
 import ReCAPTCHA from "react-google-recaptcha";
 
-// Form validation schema
+const phoneRegex = /^([+]?48)?[ -]?(\d{3})[ -]?(\d{3})[ -]?(\d{3})$/;
+
 const formSchema = z.object({
-  fullName: z.string().min(2, "Podaj imię i nazwisko"),
+  fullName: z
+    .string()
+    .min(2, "Podaj imię i nazwisko")
+    .refine((val) => val.trim().split(" ").length >= 2, {
+      message: "Podaj pełne imię i nazwisko (min. 2 słowa)",
+    }),
   email: z.string().email("Nieprawidłowy adres e-mail"),
-  phone: z.string().optional(),
-  message: z.string().min(10, "Wiadomość musi mieć min. 10 znaków"),
+  phone: z
+    .string()
+    .min(9, "Podaj numer telefonu")
+    .regex(phoneRegex, "Nieprawidłowy numer telefonu"),
+  message: z
+    .string()
+    .min(10, "Wiadomość musi mieć min. 10 znaków")
+    .max(1000, "Wiadomość jest za długa (max 1000 znaków)"),
 });
 
 type FormData = {
   fullName: string;
   email: string;
-  phone?: string;
+  phone: string;
   message: string;
 };
 
@@ -612,7 +624,7 @@ export default function Home() {
                 className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-16"
               >
                 <Image
-                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747138840/party_ing2lh.jpg"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1751902097/IMG_5237_abvukn.jpg"
                   alt="Wydarzenie firmowe"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -894,6 +906,11 @@ export default function Home() {
                       className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                       required
                     />
+                    {formErrors.fullName && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {formErrors.fullName}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2">
                     <label
@@ -911,6 +928,11 @@ export default function Home() {
                       className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                       required
                     />
+                    {formErrors.email && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {formErrors.email}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-2 md:col-span-2">
                     <label
@@ -927,6 +949,11 @@ export default function Home() {
                       placeholder="Twój numer telefonu"
                       className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     />
+                    {formErrors.phone && (
+                      <p className="text-red-500 text-xs mt-1">
+                        {formErrors.phone}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <ReCAPTCHA
@@ -950,6 +977,11 @@ export default function Home() {
                     className="bg-black/50 border-blue-500/30 text-white placeholder:text-gray-500 focus:border-blue-500 font-body"
                     required
                   />
+                  {formErrors.message && (
+                    <p className="text-red-500 text-xs mt-1">
+                      {formErrors.message}
+                    </p>
+                  )}
                 </div>
                 <Button
                   type="submit"
@@ -970,8 +1002,7 @@ export default function Home() {
                 </Button>
                 {formStatus === "success" && (
                   <p className="text-green-500 text-sm text-center md:text-lg">
-                    Wiadomość wysłana pomyślnie! Skontaktujemy się z Tobą
-                    wkrótce.
+                    Wiadomość wysłana pomyślnie! Skontaktemy się z Tobą wkrótce.
                   </p>
                 )}
                 {formStatus === "error" && (
