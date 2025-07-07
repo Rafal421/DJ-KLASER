@@ -122,7 +122,7 @@ const galleryItems = [
   {
     id: 17,
     image:
-      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1747138841/equipment2_pdk5g1.jpg",
+      "https://res.cloudinary.com/dscvxyjvn/image/upload/v1751902098/IMG_5233_tcr4lj.jpg",
     description: "Professional DJ equipment setup for live events",
   },
   {

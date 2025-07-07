@@ -144,7 +144,7 @@ export default function Home() {
     setFormStatus("loading");
 
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch("https://dj-klaser.vercel.app/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -164,7 +164,7 @@ export default function Home() {
         message: "",
       });
       setFormErrors({});
-      setRecaptchaToken(null); // ← opcjonalnie resetuj token
+      setRecaptchaToken(null);
 
       setTimeout(() => setFormStatus("idle"), 3000);
     } catch (error) {
@@ -612,7 +612,7 @@ export default function Home() {
                 className="relative aspect-[16/9] rounded-xl overflow-hidden neon-box mb-16"
               >
                 <Image
-                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/w_auto,q_auto,f_auto/v1747138840/party_ing2lh.jpg"
+                  src="https://res.cloudinary.com/dscvxyjvn/image/upload/v1751902097/IMG_5237_abvukn.jpg"
                   alt="Wydarzenie firmowe"
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"

@@ -1,6 +1,21 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
+// Obsługa preflight (OPTIONS)
+export async function OPTIONS() {
+  return NextResponse.json(
+    {},
+    {
+      status: 200,
+      headers: {
+        "Access-Control-Allow-Origin": "https://djklaser.com",
+        "Access-Control-Allow-Methods": "POST, OPTIONS",
+        "Access-Control-Allow-Headers": "Content-Type",
+      },
+    }
+  );
+}
+
 export async function POST(req: Request) {
   try {
     const { fullName, email, phone, message, recaptchaToken } =
@@ -104,7 +119,12 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       { message: "Wiadomość została wysłana pomyślnie." },
-      { status: 200 }
+      {
+        status: 200,
+        headers: {
+          "Access-Control-Allow-Origin": "https://djklaser.com",
+        },
+      }
     );
   } catch (error: unknown) {
     if (error instanceof Error) {
@@ -112,13 +132,26 @@ export async function POST(req: Request) {
 
       const errorMessage = error.message;
 
-      return NextResponse.json({ error: errorMessage }, { status: 500 });
+      return NextResponse.json(
+        { error: errorMessage },
+        {
+          status: 500,
+          headers: {
+            "Access-Control-Allow-Origin": "https://djklaser.com",
+          },
+        }
+      );
     } else {
       console.error("Błąd podczas wysyłania e-maila:", error);
 
       return NextResponse.json(
         { error: "Wystąpił nieznany błąd podczas wysyłania wiadomości." },
-        { status: 500 }
+        {
+          status: 500,
+          headers: {
+            "Access-Control-Allow-Origin": "https://djklaser.com",
+          },
+        }
       );
     }
   }
