@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🎧 DJ-KLASER -> https://dj-klaser.vercel.app
+# 🎧 DJ-KLASER -> https://dj-klaser.com
 
 Elevate your web experience with seamless creativity.
 
